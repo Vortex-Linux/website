@@ -7,7 +7,7 @@ import Image from 'astro/components/Image.astro';
   {socialLinks.map((link) => (
     <a href={link.url} target="_blank" rel="noopener noreferrer">
       <span class="sr-only">{link.srText}</span>
-      <img src={link.svgPath} alt={link.srText} height={32} width={32}/>
+      <img class="social-link" src={link.svgPath} alt={link.srText} height={32} width={32}/>
     </a>
   ))}
 </div>
@@ -22,5 +22,9 @@ import Image from 'astro/components/Image.astro';
   .social-links,
   .social-links a {
 		display: flex;
+  }
+
+  .social-link:hover {
+    filter: invert(28%) sepia(80%) saturate(1960%) hue-rotate(167deg) brightness(97%) contrast(100%);
   }
 </style>
