@@ -6,6 +6,5 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://vortexlinux.org',
-	base: 'website',
 	integrations: [mdx(), sitemap()],
 });
