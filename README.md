@@ -48,6 +48,10 @@ The `src/content/` directory contains "collections" of related Markdown and MDX 
 
 Any static assets, like images, can be placed in the `public/` directory.
 
+### GitHub Pages
+
+The website is built with Astro.js on GitHub Pages, a review will be required to make any changes to the website of contributions to ensure stability of the website and ensure there aren't any unecessary build minutes used.
+
 ## 👀 Want to learn more?
 
 Check out [Astro's documentation](https://docs.astro.build) or jump into Astro's [Discord server](https://astro.build/chat).
