@@ -49,7 +49,7 @@ const today = new Date();
 		flex: 1; /* Each section will take up equal width */
 		padding: 1em;
 		background-color: var(--light-gray); /* Background color for the sections */
-		border-radius: 
+		border-radius: 8px;
 	}
 
 	/* Policies section styling */
@@ -66,4 +66,22 @@ const today = new Date();
 	.copyright {
 		font-size: medium;
 	}
+
+	/* Responsive styles for smaller screens */
+	@media (max-width: 768px) {
+		.three-section-container {
+			flex-direction: column; /* Stack sections vertically */
+			align-items: center; /* Center align the sections */
+		}
+
+		.section {
+			width: 100%; /* Ensure sections take full width on smaller screens */
+			margin-bottom: 1em; /* Add spacing between stacked sections */
+		}
+
+		.section:last-child {
+			margin-bottom: 0; /* Remove margin for the last section */
+		}
+	}
+
 </style>
