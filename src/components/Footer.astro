@@ -1,4 +1,5 @@
 ---
+import CommunityLinks from "./CommunityLinks.astro";
 import SocialLinks from "./SocialLinks.astro";
 
 const today = new Date();
@@ -6,19 +7,19 @@ const today = new Date();
 
 <footer>
 	<div class="three-section-container">
-		<div class="section about-section policies">
+		<div class="section policies">
 		  	<h4>Policies</h4>
 		  	<a href="/privacy-policy">Privacy Policy</a><br>
 			<a href="/code-of-conduct">Code of Conduct</a><br>
 			<a href="/attribution">Attributions</a><br>
 		</div>
-		<div class="section community-section">
-		  <h4>Social</h4>
-		  <p>Join our vibrant community, contribute to the project, and collaborate with others.</p>
-		</div>
 		<div class="section social-section">
-		  <h4>Get Involved</h4>
-		  <SocialLinks />
+		  	<h4>Social</h4>
+		  	<SocialLinks />
+		</div>
+		<div class="section community-section">
+			<h4>Get Involved</h4>
+			<CommunityLinks />
 		</div>
 	  </div>	  
 	<div class="copyright">
