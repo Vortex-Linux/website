@@ -1,7 +1,6 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
-import Image from 'astro/components/Image.astro';
 import SocialLinks from './SocialLinks.astro';
 ---
 
@@ -9,7 +8,7 @@ import SocialLinks from './SocialLinks.astro';
 	<nav>
 		<div class="internal-links">
 			<HeaderLink href="/website/" class="logo">
-				<Image src="/website/logo.svg" alt="Logo" width="75" height="75"/>
+				<img src="favicon.svg" alt="Logo" width="75" height="75"/>
 				<span style="font-size: 2rem; font-weight: bold;"> {SITE_TITLE}</span>
 			</HeaderLink>
 			<div class="menu-links">
