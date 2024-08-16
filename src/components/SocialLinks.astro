@@ -1,0 +1,26 @@
+---
+import { socialLinks } from '../content/social-links.js';
+import Image from 'astro/components/Image.astro';
+---
+
+<div class="social-links">
+  {socialLinks.map((link) => (
+    <a href={link.url} target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">{link.srText}</span>
+      <img src={link.svgPath} alt={link.srText} height={32} width={32}/>
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-links {
+    display: none;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .social-links,
+  .social-links a {
+		display: flex;
+  }
+</style>
