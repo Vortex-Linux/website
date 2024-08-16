@@ -1,12 +1,24 @@
 // src/data/attributions.js
 export const attributions = [
-    {
+  {
+    name: 'Dev Icon',
+    url: 'https://dev.io',
+  },  
+  {
       name: 'Discord Icon',
       url: 'https://icons.getbootstrap.com/icons/discord/',
     },
     {
+      name: 'Facebook Icon',
+      url: 'https://icons.getbootstrap.com/icons/facebook/',
+    },
+    {
       name: 'GitHub Icon',
       url: 'https://icons.getbootstrap.com/icons/github/',
+    },
+    {
+      name: 'Instagram Icon',
+      url: 'https://icons.getbootstrap.com/icons/instagram/',
     },
     {
       name: 'Home Banner Photo by Vecteezy',
@@ -27,6 +39,10 @@ export const attributions = [
     {
         name: 'Torrent Emoji',
         url: 'https://emojipedia.org/inbox-tray',
+    },
+    {
+      name: 'Twitter-X Icon',
+      url: 'https://icons.getbootstrap.com/icons/twitter-x/',
     },
     // Add more attributions as needed
   ];
