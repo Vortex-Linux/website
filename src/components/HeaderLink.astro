@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import '../styles/HeaderLink.css';
 
 type Props = HTMLAttributes<'a'>;
 
@@ -9,9 +10,6 @@ const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === '/' + subpath?.[0];
 ---
-<head>
-	<link rel="stylesheet" href="/src/styles/HeaderLink.css">
-</head>
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
 	<slot />
 </a>

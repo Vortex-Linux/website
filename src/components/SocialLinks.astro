@@ -1,9 +1,7 @@
 ---
 import { socialLinks } from '../content/social-links.js';
+import '/styles/IconLinks.css';
 ---
-<head>
-  <link rel="stylesheet" href="/src/styles/IconLinks.css">
-</head>
 <div class="social-links">
   {socialLinks.map((link) => (
     <a href={link.url} target="_blank" rel="noopener noreferrer">
