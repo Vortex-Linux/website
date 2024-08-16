@@ -1,16 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
+import '../styles/BlogSlider.css';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
 <section class="recent-blog-posts">
   <h2 class="section-title">Latest Blog Posts</h2>
   <div class="slider">
-    <button class="slider-button prev-button" aria-label="Previous Slide">&lt;</button>
+    <button class="slider-button prev-button" aria-label="Previous Slide" style="display: none;">&lt;</button>
     <div class="slider-wrapper">
       <div class="slider-track">
         {posts.map((post) => (
@@ -30,136 +31,46 @@ const posts = (await getCollection('blog')).sort(
   </div>
 </section>
 
-
-<style>
-    .recent-blog-posts {
-  padding: 2em 1em;
-  background-color: var(--light-gray);
-  text-align: center;
-}
-
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 1.5em;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-.slider {
-  position: relative;
-  overflow: hidden;
-}
-
-.slider-wrapper {
-  overflow: hidden;
-  width: 100%;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.3s ease;
-}
-
-.slide {
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 0 1em;
-}
-
-.post-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: transform 0.2s ease;
-}
-
-.post-link:hover {
-  transform: scale(1.05);
-}
-
-.post-image {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin-bottom: 1em;
-  object-fit: cover;
-}
-
-.post-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--accent-dark);
-  margin-bottom: 0.5em;
-}
-
-.post-date {
-  font-size: 1rem;
-  color: var(--gray);
-}
-
-.slider-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--accent);
-  color: white;
-  border: none;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.prev-button {
-  left: 10px;
-}
-
-.next-button {
-  right: 10px;
-}
-
-@media (max-width: 640px) {
-  .post-title {
-    font-size: 1.25rem;
-  }
-
-  .post-date {
-    font-size: 0.875rem;
-  }
-}
-</style>
-
 <script>
-    // @ts-nocheck
-    document.addEventListener('DOMContentLoaded', () => {
-      const sliderTrack = document.querySelector('.slider-track');
-      const slides = document.querySelectorAll('.slide');
-      const prevButton = document.querySelector('.prev-button');
-      const nextButton = document.querySelector('.next-button');
-  
-      let currentSlide = 0;
-      const totalSlides = slides.length;
-  
-      function updateSliderPosition() {
-        const slideWidth = slides[0].clientWidth;
-        const newPosition = -(currentSlide * slideWidth);
-        sliderTrack.style.transform = `translateX(${newPosition}px)`;
+    //@ts-nocheck
+  document.addEventListener('DOMContentLoaded', () => {
+    const sliderTrack = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSliderPosition() {
+      const slideWidth = slides[0].clientWidth;
+      const newPosition = -(currentSlide * slideWidth);
+      sliderTrack.style.transform = `translateX(${newPosition}px)`;
+      updateButtonVisibility();
+    }
+
+    function updateButtonVisibility() {
+      prevButton.style.display = currentSlide === 0 ? 'none' : 'flex';
+      nextButton.style.display = currentSlide === totalSlides - 1 ? 'none' : 'flex';
+    }
+
+    prevButton.addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSliderPosition();
       }
-  
-      prevButton.addEventListener('click', () => {
-        if (currentSlide > 0) {
-          currentSlide--;
-          updateSliderPosition();
-        }
-      });
-  
-      nextButton.addEventListener('click', () => {
-        if (currentSlide < totalSlides - 1) {
-          currentSlide++;
-          updateSliderPosition();
-        }
-      });
-  
-      window.addEventListener('resize', updateSliderPosition);
     });
-  </script>
-  
+
+    nextButton.addEventListener('click', () => {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSliderPosition();
+      }
+    });
+
+    window.addEventListener('resize', updateSliderPosition);
+
+    // Initial button visibility check
+    updateButtonVisibility();
+  });
+</script>
