@@ -1,0 +1,66 @@
+.hero-section {
+    background-image: url('/banner.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 80vh; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent);
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-title {
+    color: var(--accent);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+
+.title-mark {
+    font-size: 3rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px black;
+}
+
+.hero-button {
+    background-color: var(--accent-dark);
+    color: white;
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.hero-button:hover {
+    background-color: var(--accent);
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .hero-button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}

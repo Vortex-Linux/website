@@ -2,7 +2,8 @@
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
-
+<link rel="stylesheet" href="/src/styles/Header.css">
+<script type="text/javascript" src="/src/scripts/Header.js"></script>
 <header>
 	<nav>
 		<div class="internal-links">
@@ -23,97 +24,3 @@ import { SITE_TITLE } from '../consts';
 		</div>
 	</nav>
 </header>
-
-<style>
-	/* General styles */
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: black;
-		box-shadow: 0 2px 8px rgba(var(--gray), 5%);
-	}
-
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.internal-links {
-		display: flex;
-		align-items: center;
-		width: 100%;
-	}
-
-	.logo {
-		display: flex;
-		align-items: center;
-	}
-
-	.menu-links {
-		display: flex;
-		align-items: center;
-		gap: 1em;
-		margin-left: auto; /* Pushes the links to the right of the logo */
-	}
-
-	.menu-icon {
-		display: none;
-		flex-direction: column;
-		cursor: pointer;
-		margin-left: 1rem; /* Aligns the menu icon to the right */
-	}
-
-	.menu-icon span {
-		background-color: var(--accent);
-		height: 3px;
-		width: 25px;
-		margin: 3px;
-		border-radius: 5px;
-		transition: all 0.3s ease;
-	}
-
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--accent);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-
-	/* Mobile Styles - Change the breakpoint here */
-	@media (max-width: 1024px) {
-		.menu-links {
-			display: none;
-			flex-direction: column;
-			position: absolute;
-			top: 70px;
-			right: 10px;
-			background-color: black;
-			width: 200px;
-			border-radius: 8px;
-			box-shadow: 0 2px 8px rgba(var(--gray), 5%);
-		}
-
-		.menu-links.open {
-			margin-top:1.5rem;
-			display: flex;
-		}
-
-		.menu-icon {
-			display: flex;
-		}
-	}
-
-</style>
-
-<script>
-	// @ts-nocheck
-	document.addEventListener('DOMContentLoaded', function () {
-		const menuButton = document.getElementById('menu-button');
-		const menuLinks = document.querySelector('.menu-links');
-
-		menuButton.addEventListener('click', function () {
-			menuLinks.classList.toggle('open');
-		});
-	});
-</script>

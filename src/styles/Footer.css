@@ -1,0 +1,56 @@
+footer {
+    padding: 2em 1em 2em 1em;
+    background: black;
+    color: rgb(var(--accent));
+    text-align: center;
+}
+
+h4 {
+    padding-bottom: 0.5rem;
+}
+
+.three-section-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em; /* Space between the sections */
+    padding: 2em 1em;
+}
+
+.section {
+    flex: 1; /* Each section will take up equal width */
+    padding: 1em;
+    background-color: var(--light-gray); /* Background color for the sections */
+    border-radius: 8px;
+}
+
+/* Policies section styling */
+.policies a {
+    color: rgb(var(--accent));
+    text-decoration: none;
+}
+
+.policies a:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: rgb(var(--accent-dark));
+}
+
+.copyright {
+    font-size: medium;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .three-section-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align the sections */
+    }
+
+    .section {
+        width: 100%; /* Ensure sections take full width on smaller screens */
+        margin-bottom: 1em; /* Add spacing between stacked sections */
+    }
+
+    .section:last-child {
+        margin-bottom: 0; /* Remove margin for the last section */
+    }
+}
