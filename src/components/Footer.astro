@@ -5,12 +5,24 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Vortex Linux Org. All rights reserved.
-	<SocialLinks />
-	<div class="policies">
-		<a href="/privacy-policy">Privacy Policy</a>
-		<a href="/code-of-conduct">Code of Conduct</a>
-		<a href="/attribution">Attributions</a>
+	<div class="three-section-container">
+		<div class="section about-section policies">
+		  	<h4>Policies</h4>
+		  	<a href="/privacy-policy">Privacy Policy</a><br>
+			<a href="/code-of-conduct">Code of Conduct</a><br>
+			<a href="/attribution">Attributions</a><br>
+		</div>
+		<div class="section community-section">
+		  <h4>Social</h4>
+		  <p>Join our vibrant community, contribute to the project, and collaborate with others.</p>
+		</div>
+		<div class="section social-section">
+		  <h4>Get Involved</h4>
+		  <SocialLinks />
+		</div>
+	  </div>	  
+	<div class="copyright">
+		<p>&copy; {today.getFullYear()} Vortex Linux Org. All rights reserved.</p>
 	</div>
 </footer>
 <style>
@@ -20,36 +32,37 @@ const today = new Date();
 		color: rgb(var(--accent));
 		text-align: center;
 	}
-	.social-links {
+
+	h4 {
+		padding-bottom: 0.5rem;
+	}
+
+	.three-section-container {
 		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
+		justify-content: space-between;
+		gap: 2em; /* Space between the sections */
+		padding: 2em 1em;
 	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--accent));
-	}
-	.social-links a:hover {
-		color: rgb(var(--accent-dark));
+
+	.section {
+		flex: 1; /* Each section will take up equal width */
+		padding: 1em;
+		background-color: var(--light-gray); /* Background color for the sections */
+		border-radius: 
 	}
 
 	/* Policies section styling */
-	.policies {
-		margin-top: 1em;
-		display: flex;
-		justify-content: center;
-		gap: 1.5em; /* Spacing between links */
-	}
-
 	.policies a {
 		color: rgb(var(--accent));
 		text-decoration: none;
-		font-size: 0.9rem;
 	}
 
 	.policies a:hover {
 		text-decoration: underline; /* Add underline on hover */
 		color: rgb(var(--accent-dark));
+	}
+
+	.copyright {
+		font-size: medium;
 	}
 </style>
