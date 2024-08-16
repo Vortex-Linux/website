@@ -37,7 +37,7 @@ Our [Discord server](https://discord.gg/MsF24qUA5y) is the heart of the Vortex L
 
 Even if you're not a developer, designer, or writer, you can still help by spreading the word about Vortex Linux:
 
-- **Share on Social Media:** Follow us on [Twitter](https://twitter.com/vortexlinux) and share our posts to help grow the community.
+- **Share on Social Media:** Follow us on [Facebook](https://facebook.com/vortexlinux), [Instagram](https://instagram.com/vortexlinux), [Twitter-X](https://twitter.com/vortexlinux) and share our posts to help grow the community.
 - **Recommend Vortex Linux:** If you know someone who might benefit from using Vortex Linux, recommend us!
 
 ### 5. Support the Project
