@@ -4,5 +4,6 @@ a {
 }
 a.active {
     font-weight: bolder;
-    text-decoration: underline;
+    text-decoration: bold;
+    color: var(--accent-dark)
 }
