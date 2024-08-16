@@ -1,22 +1,28 @@
 // src/data/socialLinks.js
 export const socialLinks = [
     {
-      name: 'Read The Docs',
-      url: 'https://vortexlinux.readthedocs.io/en/latest/',
-      srText: 'Go to Vortex Linux\'s Read The Docs',
-      svgPath: `/social-icons/read-the-docs.svg`,
+      name: 'Facebook',
+      url: 'https://facebook.com',
+      srText: 'Go to Vortex Linux\'s Facebook',
+      svgPath: `/social-icons/facebook.svg`,
     },
     {
-      name: 'Discord Server',
+      name: 'Instagram',
       url: 'https://discord.gg/MsF24qUA5y',
-      srText: 'Go to Vortex Linux\'s Discord Server',
-      svgPath: `/social-icons/discord.svg`,
+      srText: 'Go to Vortex Linux\'s Instagram',
+      svgPath: `/social-icons/instagram.svg`,
     },
     {
-      name: 'GitHub Repo',
+      name: 'X',
       url: 'https://github.com/Vortex-Linux/',
-      srText: 'Go to Vortex Linux\'s GitHub repo',
-      svgPath: `/social-icons/github.svg`,
+      srText: 'Go to Vortex Linux\'s X',
+      svgPath: `/social-icons/x.svg`,
+    },
+    {
+      name: 'Dev',
+      url: 'https://github.com/Vortex-Linux/',
+      srText: 'Go to Vortex Linux\'s Dev.io',
+      svgPath: `/social-icons/dev-io.svg`,
     }
     // Add more social links as needed
   ];
