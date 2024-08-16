@@ -8,8 +8,8 @@ import SocialLinks from './SocialLinks.astro';
 <header>
 	<nav>
 		<div class="internal-links">
-			<HeaderLink href="/website" class="logo">
-				<Image src="/website/favicon.svg" alt="Logo" width="75" height="75"/>
+			<HeaderLink href="/website/" class="logo">
+				<Image src="/website/logo.svg" alt="Logo" width="75" height="75"/>
 				<span style="font-size: 2rem; font-weight: bold;"> {SITE_TITLE}</span>
 			</HeaderLink>
 			<div class="menu-links">
@@ -81,11 +81,6 @@ import SocialLinks from './SocialLinks.astro';
 		color: var(--accent);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
-	}
-
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent-dark);
 	}
 
 	/* Mobile Styles - Change the breakpoint here */
