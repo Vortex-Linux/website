@@ -1,76 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
-import FormattedDate from './FormattedDate.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import '../styles/BlogSlider.css';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
 ---
 
-<section class="recent-blog-posts">
-  <h2 class="section-title">Latest Blog Posts</h2>
-  <div class="slider">
-    <button class="slider-button prev-button" aria-label="Previous Slide" style="display: none;">&lt;</button>
-    <div class="slider-wrapper">
-      <div class="slider-track">
-        {posts.map((post) => (
-          <div class="slide">
-            <a href={`/blog/${post.slug}/`} class="post-link">
-              <img src={post.data.heroImage} alt="" class="post-image" />
-              <h3 class="post-title">{post.data.title}</h3>
-              <p class="post-date">
-                <FormattedDate date={post.data.pubDate} />
-              </p>
-            </a>
-          </div>
-        ))}
+<section class="blog-preview-section">
+  <h2>Latest Blog Posts</h2>
+  <div class="blog-cards">
+    {posts.map((post) => (
+      <div class="blog-card">
+        <p class="blog-date"><FormattedDate date={post.data.pubDate} /> </p>
+        <a href={`/blog/${post.slug}/`} class="read-more"> 
+          <h3 class="blog-title">{post.data.title}</h3>
+          Read More</a>
       </div>
-    </div>
-    <button class="slider-button next-button" aria-label="Next Slide">&gt;</button>
+    ))}
   </div>
 </section>
-
-<script>
-    //@ts-nocheck
-  document.addEventListener('DOMContentLoaded', () => {
-    const sliderTrack = document.querySelector('.slider-track');
-    const slides = document.querySelectorAll('.slide');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function updateSliderPosition() {
-      const slideWidth = slides[0].clientWidth;
-      const newPosition = -(currentSlide * slideWidth);
-      sliderTrack.style.transform = `translateX(${newPosition}px)`;
-      updateButtonVisibility();
-    }
-
-    function updateButtonVisibility() {
-      prevButton.style.display = currentSlide === 0 ? 'none' : 'flex';
-      nextButton.style.display = currentSlide === totalSlides - 1 ? 'none' : 'flex';
-    }
-
-    prevButton.addEventListener('click', () => {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSliderPosition();
-      }
-    });
-
-    nextButton.addEventListener('click', () => {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSliderPosition();
-      }
-    });
-
-    window.addEventListener('resize', updateSliderPosition);
-
-    // Initial button visibility check
-    updateButtonVisibility();
-  });
-</script>
