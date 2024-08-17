@@ -18,6 +18,16 @@ export const downloadInfoTable = {
           "USB port for the installer media."
         ]
       },
+      systemRecommendations: {
+        title: "System Recommendations",
+        content: [
+          "Processor: 2 GHz dual-core processor or better.",
+          "Memory: 4 GB RAM or more.",
+          "Storage: 25 GB of free hard drive space.",
+          "Graphics: VGA capable of 1024x768 screen resolution.",
+          "USB port for the installer media."
+        ]
+      },
       howToInstall: {
         title: "How to Install",
         content: [
