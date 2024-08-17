@@ -1,14 +1,27 @@
 /* General styles */
 header {
-    position: fixed; /* Make the header stay fixed at the top */
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
     margin: 0;
     padding: 0 1em;
-    background: black;
+    background: transparent;
     box-shadow: 0 2px 8px rgba(var(--gray), 5%);
+    transition: background-color 0.3s ease;
+    height: 7rem;
+}
+
+header.home {
+    position:fixed;
+}
+
+header.not-home {
+    position:sticky;
+}
+
+header.scrolled {
+    background: var(--black);
 }
 
 nav {
@@ -97,7 +110,7 @@ nav a {
         position: absolute;
         top: 70px;
         right: 10px;
-        background-color: black;
+        /* background-color: black; */
         width: 200px;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(var(--gray), 5%);
