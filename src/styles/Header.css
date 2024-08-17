@@ -42,7 +42,6 @@ nav {
 }
 
 .menu-links {
-    background-color: var(--black);
     display: flex;
     align-items: center;
     gap: 1em;
@@ -111,7 +110,7 @@ nav a {
         position: absolute;
         top: 70px;
         right: 10px;
-        /* background-color: black; */
+        background-color: black;
         width: 200px;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(var(--gray), 5%);
