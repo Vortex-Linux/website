@@ -1,27 +1,19 @@
 ---
 import Base from '../components/Base.astro';
 import BlogSlider from '../components/BlogSlider.astro';
+import WhyChoose from '../components/WhyChoose.astro';
+import KeyFeatures from '../components/KeyFeatures.astro';
+import { indexData } from '../content/indexData';
 ---
 
 <Base isHomePage={true} showCallToAction={true}>
 	<p>
-		<h1>Welcome to Vortex Linux</h1> Vortex Linux is a groundbreaking Linux distribution designed for maximum security, flexibility, and stability. By seamlessly integrating containers and virtual machines (VMs), Vortex Linux offers a unique, immutable, and atomic operating system that caters to the needs of both novice and advanced users.
+		<h1>{indexData.welcomeMessage}</h1> {indexData.introText}
 	</p>
 	<br><br>
-	<h2>Key Features</h2>
-	<ul>
-		<li><b>Immutable and Atomic:</b> Vortex Linux ensures system integrity and reliability by maintaining an immutable base system, allowing for atomic updates and rollbacks.</li>
-		<li><b>Seamless Integration:</b> Utilize containers and virtual machines to install and manage packages, providing isolation and flexibility.</li>
-		<li><b>Security First:</b> Designed with security in mind, Vortex Linux leverages advanced security measures to protect your system and data.</li>
-		<li><b>User-Friendly:</b> With intuitive tools and a supportive community, Vortex Linux is accessible and easy to use for everyone, from beginners to experts.</li>
-	</ul>
+	
+	<KeyFeatures />
 	<br>
-	<h2>Why Choose Vortex Linux</h2>
-	<ul>
-		<li><b>Flexibility:</b> Easily manage and switch between different applications and environments using containers and VMs.</li>
-		<li><b>Reliability:</b> The immutable nature of Vortex Linux ensures that your system remains stable and consistent, with minimal risk of corruption or failure.</li>
-		<li><b>Security:</b> Advanced security features protect your system from threats, making Vortex Linux a trusted choice for critical applications.</li>
-		<li><b>User-Friendliness:</b> Our intuitive tools and comprehensive documentation make it easy for users at all levels to get started and make the most of Vortex Linux.</li>
-	</ul>
+	<WhyChoose />
 	<BlogSlider />
 </Base>

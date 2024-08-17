@@ -1,0 +1,12 @@
+---
+import { whyChooseData } from '../content/whyChooseData';
+---
+
+<h2>Why Choose Vortex Linux?</h2>
+<ul>
+	{whyChooseData.map(item => (
+		<li>
+			<b>{item.title}:</b> {item.description}
+		</li>
+	))}
+</ul>
