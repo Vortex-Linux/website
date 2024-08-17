@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import '../styles/BlogSlider.css';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+---
+
+<section class="blog-preview-section">
+  <h2>Latest Blog Posts</h2>
+  <div class="blog-cards">
+    {posts.map((post) => (
+      <div class="blog-card">
+        <p class="blog-date"><FormattedDate date={post.data.pubDate} /> </p>
+        <a href={`/blog/${post.slug}/`} class="read-more"> 
+          <h3 class="blog-title">{post.data.title}</h3>
+          Read More</a>
+      </div>
+    ))}
+  </div>
+</section>

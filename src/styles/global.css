@@ -7,9 +7,10 @@
 :root {
 	--accent: #e5fdfd;
 	--accent-dark: #00869f;
-	--black: 0, 0, 0;
-	--gray: #e5fdfd;
-	--gray-light: #e5f7f7;
+	--black: #000;
+	--white: #e5fdfd;
+	--gray: #535353;
+	--gray-light: #7e7e7e;
 	--gray-dark: #00869f;
 	--gray-gradient: rgba(var(--gray-light), 50%), #001a1f;
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
