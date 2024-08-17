@@ -20,8 +20,8 @@ import '../styles/Header.css';
               <div class="dropdown-content">
                 {item.dropdown.map((dropdownItem) => (
                   <HeaderLink href={dropdownItem.href}>
-                    {dropdownItem.icon && <img class="social-link" src={dropdownItem.icon} alt={`${dropdownItem.title} Logo`} height={16} width={16} />}
-                    {dropdownItem.title}
+                    {dropdownItem.icon && <img class="social-link" src={dropdownItem.icon} alt={`${dropdownItem.title} Logo`} height={16} width={16} style={{ marginRight: '8px' }} />}
+                    <span>{dropdownItem.title}</span>
                   </HeaderLink>
                 ))}
               </div>
