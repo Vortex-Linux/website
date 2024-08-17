@@ -3,9 +3,11 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 import { navData } from '../content/navData';
 import '../styles/Header.css';
+
+const isHomePage = Astro.props.isHomePage ?? false; // Default to false
 ---
 
-<header id="main-header">
+<header id="main-header" class={isHomePage ? 'home' : 'not-home'}>
   <nav>
     <div class="internal-links">
       <HeaderLink href="/" class="logo">
