@@ -22,17 +22,6 @@ export const downloads = [
       size: '2.7 GB',
       checksum: 'def456ghi789abc123',
     },
-    {
-      name: 'Vortex Linux Rolling Release',
-      description: 'Cutting-edge updates, ideal for advanced users.',
-      version: 'rolling',
-      releaseDate: 'Continuous',
-      magnetUrl: 'https://example.com/vortex-linux-rolling.iso',
-      torrentUrl: 'https://example.com/vortex-linux-rolling.iso',
-      mirrorUrl: 'https://example.com/vortex-linux-rolling.iso',
-      size: '2.6 GB',
-      checksum: 'ghi789abc123def456',
-    },
     // Add more versions as needed
   ];
   

@@ -1,0 +1,56 @@
+---
+import { downloadInfoTable } from '../content/download-info-table.js';
+import '../styles/DownloadInfoTable.css';
+
+const tabs = Object.keys(downloadInfoTable);
+---
+
+<section class="downloads-info-section">
+  <!-- Tabs -->
+  <div class="tabs">
+    {tabs.map((tab) => (
+      <button
+        class="tab"
+        id={`${tab}-tab`}
+        data-target={`${tab}-content`}
+      >
+        {downloadInfoTable[tab].title}
+      </button>
+    ))}
+  </div>
+
+  <!-- Tab Content -->
+  {tabs.map((tab) => (
+    <div id={`${tab}-content`} class="tab-pane">
+      {downloadInfoTable[tab].content.map((item) => (
+        <p class="tab-content-item">{item}</p>
+      ))}
+    </div>
+  ))}
+</section>
+
+<script>
+//@ts-nocheck
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const target = tab.getAttribute('data-target');
+
+        // Remove active classes from all tabs and panes
+        tabs.forEach(t => t.classList.remove('active'));
+        panes.forEach(pane => pane.classList.remove('active'));
+
+        // Add active class to the clicked tab and corresponding pane
+        tab.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Initialize the first tab as active
+    tabs[0].classList.add('active');
+    panes[0].classList.add('active');
+  });
+</script>

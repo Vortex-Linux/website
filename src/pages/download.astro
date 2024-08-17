@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Downloads from '../components/Downloads.astro';
+import DownloadInfoTable from '../components/DownloadInfoTable.astro';
 ---
 
 <!doctype html>
@@ -18,6 +19,7 @@ import Downloads from '../components/Downloads.astro';
 			<h3>Stay tuned for our 0.1 release.</h3>
 			<p>The below links currently are not active and showing what will come.</p>
 			<p>For the latest news <a href="https://discord.gg/MsF24qUA5y">join our discord</a> or <a href="https://vortexlinux.readthedocs.io/en/latest/contributing.html">contribute to the project</a>.</p>
+			<DownloadInfoTable />
 			<Downloads />
 		</main>
 		<Footer />
