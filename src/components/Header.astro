@@ -5,7 +5,7 @@ import { navData } from '../content/navData';
 import '../styles/Header.css';
 ---
 
-<header>
+<header id="main-header">
   <nav>
     <div class="internal-links">
       <HeaderLink href="/" class="logo">
@@ -45,6 +45,7 @@ import '../styles/Header.css';
   document.addEventListener('DOMContentLoaded', function () {
     const menuButton = document.getElementById('menu-button');
     const menuLinks = document.querySelector('.menu-links');
+    const header = document.getElementById('main-header');
 
     menuButton.addEventListener('click', function () {
       menuLinks.classList.toggle('open');
@@ -62,6 +63,15 @@ import '../styles/Header.css';
           dropdownContent.classList.toggle('open');
         }
       });
+    });
+
+    // Scroll event to change header background
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     });
   });
 </script>
