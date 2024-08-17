@@ -3,18 +3,49 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 import '../styles/Header.css';
 ---
+
 <header>
 	<nav>
 		<div class="internal-links">
 			<HeaderLink href="/" class="logo">
 				<img src="/favicon.svg" alt="Logo" width="75" height="75"/>
-				<span style="font-size: 2rem; font-weight: bold;"> {SITE_TITLE}</span>
+				<span style="font-size: 2rem; font-weight: bold;">{SITE_TITLE}</span>
 			</HeaderLink>
 			<div class="menu-links">
 				<HeaderLink href="/download">Download</HeaderLink>
 				<HeaderLink href="/blog">News</HeaderLink>
-				<HeaderLink href="/about">About</HeaderLink>
-				<HeaderLink href="/blog/get-involved">Get Involved</HeaderLink>
+				<div class="dropdown">
+					<HeaderLink>Help ↓</HeaderLink>
+					<div class="dropdown-content">
+						<HeaderLink href="/about"><img class="social-link" src='/social-icons/discord.svg' alt='Discord Logo' height={16} width={16}/> Discord</HeaderLink>
+						<HeaderLink href="/about">Forum</HeaderLink>
+						<HeaderLink href="/about"><img class="social-link" src='/social-icons/github.svg' alt='GitHub Logo' height={16} width={16}/> GitHub</HeaderLink>
+						<HeaderLink href="/about"><img class="social-link" src='/social-icons/read-the-docs.svg' alt='Read the Docs Logo' height={16} width={16}/> ReadTheDocs</HeaderLink>
+					</div>
+				</div>
+				<div class="dropdown">
+					<HeaderLink>Info ↓</HeaderLink>
+					<div class="dropdown-content">
+						<HeaderLink href="/about">About</HeaderLink>
+						<HeaderLink href="/about#team">Code of Conduct</HeaderLink>
+						<HeaderLink href="/about"><img class="social-link" src='/social-icons/github.svg' alt='GitHub Logo' height={16} width={16}/> GitHub</HeaderLink>
+						<HeaderLink href="/about#mission">Mission</HeaderLink>
+						<HeaderLink href="/about#team">Privacy Policy</HeaderLink>
+						<HeaderLink href="/about"><img class="social-link" src='/social-icons/read-the-docs.svg' alt='Read the Docs Logo' height={16} width={16}/> ReadTheDocs</HeaderLink>
+						<HeaderLink href="/about#team">Team</HeaderLink>
+					</div>
+				</div>
+				<div class="dropdown">
+					<HeaderLink href="/blog/get-involved">Community ↓</HeaderLink>
+					<div class="dropdown-content">
+						<HeaderLink href="/about"><img class="social-link" src='/social-icons/discord.svg' alt='GitHub Logo' height={16} width={16}/> Discord</HeaderLink>
+						<HeaderLink href="/blog/get-involved"><img class="social-link" src='/social-icons/facebook.svg' alt='Facebook Logo' height={16} width={16}/> Facebook</HeaderLink>
+						<HeaderLink href="/blog/get-involved"><img class="social-link" src='/social-icons/instagram.svg' alt='Instagram Logo' height={16} width={16}/> Instagram</HeaderLink>
+						<HeaderLink href="/blog/get-involved"><img class="social-link" src='/social-icons/x.svg' alt='Twitter-X Logo' height={16} width={16}/> Twitter</HeaderLink>
+						<HeaderLink href="/blog/get-involved"><img class="social-link" src='/social-icons/dev-io.svg' alt='Dev.io Logo' height={16} width={16}/> Dev.io</HeaderLink>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		<div class="menu-icon" id="menu-button">
@@ -33,6 +64,20 @@ import '../styles/Header.css';
 
 		menuButton.addEventListener('click', function () {
 			menuLinks.classList.toggle('open');
+		});
+
+		const dropdowns = document.querySelectorAll('.dropdown');
+
+		dropdowns.forEach(function (dropdown) {
+			const dropdownLink = dropdown.querySelector('a');
+
+			dropdownLink.addEventListener('click', function (e) {
+				if (window.innerWidth <= 1024) { // Mobile breakpoint
+					e.preventDefault();
+					const dropdownContent = dropdown.querySelector('.dropdown-content');
+					dropdownContent.classList.toggle('open');
+				}
+			});
 		});
 	});
 </script>
