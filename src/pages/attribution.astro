@@ -1,34 +1,33 @@
 ---
-import Attributions from '../components/Attributions.astro';
-import Layout from '../layouts/BlogPost.astro';
+import Base from '../components/Base.astro';
+import { attributionData } from '../content/data/attributionData';
+import '../styles/Attributions.css';
 ---
 
-<Layout
-	title="Attributions"
-	description="You will find Vortex Linux's Attributions here."
-	pubDate={new Date('August 15 2024')}
->
-    <p>
-        Welcome to the Attributions page of Vortex Linux. This page is dedicated to acknowledging the creators and contributors whose work has made a significant impact on our website and project. Vortex Linux is committed to transparency and respect for intellectual property rights, and this page serves to properly attribute the open-source resources, images, icons, and other content used throughout our website under the Creative Commons Attribution (CC BY) license.
-    </p>
+<Base title={attributionData.title} description={attributionData.description} showCallToAction={false}>
+    <h2>{attributionData.title}</h2>
+    <p>{attributionData.introText}</p>
 
-    <h3>What You'll Find Here:</h3>
+    <h3>{attributionData.sections?.[0]?.title}</h3>
     <ul>
-        <li>
-            <b>Open-Source Projects:</b> A list of open-source libraries, frameworks, and tools that have been instrumental in the development of Vortex Linux and this website.
-        </li>
-        <li>
-            <b>Icons and Images:</b> Credits for the icons, images, and graphic assets used on our site, including links to the original sources.
-        </li>
-        <li>
-            <b>Content Contributions:</b> Acknowledgment of any written content, tutorials, or documentation that has been adapted or directly utilized from external sources.
-        </li>
+        {attributionData.sections?.[0]?.items?.map(item => (
+            <li>
+                <b>{item.title}:</b> {item.description}
+            </li>
+        ))}
     </ul>
-        
-    <h3>Why Attribution Matters</h3>
-    <p>
-        At Vortex Linux, we believe in the power of collaboration and sharing knowledge. By using Creative Commons licensed content, we benefit from the creativity and hard work of others, and it's our responsibility to give proper credit where it’s due. Attribution not only honors the original creators but also encourages the continued sharing and improvement of resources within the open-source community.
-    </p>   
-     
-    <Attributions />
-</Layout>
+
+    <h3>{attributionData.sections?.[1]?.title}</h3>
+    <p>{attributionData.sections?.[1]?.text}</p>
+
+    <section class="attribution-section">
+        <h3 class="attribution-title">Attribution List</h3>
+        <ul class="attribution-list">
+            {attributionData.attributions?.map((item) => (
+            <li>
+                <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
+            </li>
+            ))}
+        </ul>
+    </section>
+</Base>

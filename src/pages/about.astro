@@ -1,44 +1,29 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Base from '../components/Base.astro';
 import TeamMembers from '../components/TeamMembers.astro';
+import WhyChoose from '../components/WhyChoose.astro';
+import KeyFeatures from '../components/KeyFeatures.astro';
+import { aboutData } from '../content/data/aboutData';
 ---
 
-<Layout
-	title="About Vortex Linux"
-	description="Learn more about the Vortex Linux Org and our purpose"
-	pubDate={new Date('August 08 2021')}
->
-	
-	<p>Vortex Linux is a groundbreaking Linux distribution built for those who demand the highest levels of security, flexibility, and stability from their operating system. Whether you’re a novice or an advanced user, Vortex Linux is designed to cater to your needs, offering a unique, immutable, and atomic operating system that seamlessly integrates containers and virtual machines (VMs).</p>
+<Base title={aboutData.title} description={aboutData.description} showCallToAction={true}>
+	<h1>{aboutData.title}</h1>
+	<p>{aboutData.introText}</p>
 
-	<h2>Our Mission</h2>
-	<p>At Vortex Linux, our mission is to provide a secure and reliable Linux distribution that empowers users to manage their systems with confidence. We are committed to creating a robust platform that combines the best of modern technology with user-friendly tools, ensuring that everyone—from beginners to experts—can benefit from the power of Linux.</p>
+	<h2>{aboutData.mission.title}</h2>
+	<p>{aboutData.mission.text}</p>
 
-	<h2>Key Features</h2>
-	<ul>
-		<li><strong>Immutable and Atomic:</strong> Vortex Linux maintains an immutable base system, allowing for atomic updates and rollbacks, ensuring that your system remains consistent and free from corruption.</li>
-		<li><strong>Seamless Integration:</strong> Harness the power of containers and virtual machines to install and manage packages with ease, providing both flexibility and isolation.</li>
-		<li><strong>Security First:</strong> Built with advanced security measures, Vortex Linux protects your system and data, making it an ideal choice for critical applications.</li>
-		<li><strong>User-Friendly:</strong> With intuitive tools and comprehensive documentation, Vortex Linux is accessible to everyone, regardless of their technical expertise.</li>
-	</ul>
+	<KeyFeatures />
 
-	<h2>Why Choose Vortex Linux?</h2>
-	<ul>
-		<li><strong>Flexibility:</strong> Manage and switch between different applications and environments effortlessly using containers and VMs, tailored to your specific needs.</li>
-		<li><strong>Reliability:</strong> The immutable nature of Vortex Linux ensures that your system remains stable and consistent, minimizing the risk of failures or data loss.</li>
-		<li><strong>Security:</strong> Benefit from cutting-edge security features designed to protect your system from external threats, ensuring peace of mind.</li>
-		<li><strong>User-Friendliness:</strong> Our supportive community, along with detailed guides and tools, makes it easy for users of all levels to get started with Vortex Linux and maximize its potential.</li>
-	</ul>
+	<WhyChoose />
 
-	<h2>Community and Collaboration</h2>
-	<p>Vortex Linux is more than just an operating system—it’s a community-driven project that thrives on collaboration and the shared goal of creating the best possible Linux distribution. We believe in the power of open-source software and the importance of giving credit where it’s due. Our project is built on the contributions of many talented individuals, and we are committed to transparency and respect for intellectual property.</p>
+	<h2>{aboutData.communityCollaboration.title}</h2>
+	<p>{aboutData.communityCollaboration.text}</p>
 
-	<h2>Get Involved</h2>
-	<p>Whether you’re looking to contribute to the development of Vortex Linux, participate in our community forums, or simply explore what we have to offer, there’s a place for you in our community. Join us in making Vortex Linux even better—your input and collaboration are always welcome!</p>
-	<p><strong>Thank you for choosing Vortex Linux. Together, we are building the future of secure, flexible, and user-friendly computing.</strong></p>
+	<h2>{aboutData.getInvolved.title}</h2>
+	<p>{aboutData.getInvolved.text}</p>
+
+	<p><strong>{aboutData.closingText}</strong></p>
 
 	<TeamMembers />
-	
-	
-
-</Layout>
+</Base>

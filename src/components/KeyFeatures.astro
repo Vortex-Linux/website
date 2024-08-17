@@ -1,0 +1,12 @@
+---
+import { keyFeaturesData } from '../content/data/keyFeaturesData';
+---
+
+<h2>Key Features</h2>
+<ul>
+	{keyFeaturesData.map(feature => (
+		<li>
+			<b>{feature.title}:</b> {feature.description}
+		</li>
+	))}
+</ul>

@@ -1,0 +1,27 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Hero from './Hero.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// Props and slots for customization
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, isHomePage = false, showCallToAction = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header isHomePage={isHomePage} />
+		{isHomePage && <Hero />}
+		<main>
+			<slot />
+		</main>
+        {showCallToAction && <CallToAction />}
+		<Footer />
+	</body>
+</html>
