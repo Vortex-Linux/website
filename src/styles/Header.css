@@ -1,5 +1,10 @@
 /* General styles */
 header {
+    position: fixed; /* Make the header stay fixed at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it stays above other content */
     margin: 0;
     padding: 0 1em;
     background: black;
@@ -53,6 +58,37 @@ nav a {
     text-decoration: none;
 }
 
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position dropdown below the link */
+    left: 0;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--gray), 5%);
+    z-index: 1;
+    white-space: nowrap; /* Prevent text from wrapping */
+    padding: 0.5em 0; /* Vertical padding for the dropdown content */
+    overflow: hidden; /* Prevent hover effects from exceeding dropdown bounds */
+}
+
+.dropdown-content a {
+    padding: 0.5em 1em;
+    display: block;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--gray);
+    color: white;
+}
+
 /* Mobile Styles - Change the breakpoint here */
 @media (max-width: 1024px) {
     .menu-links {
@@ -68,11 +104,31 @@ nav a {
     }
 
     .menu-links.open {
-        margin-top:1.5rem;
+        margin-top: 1.5rem;
         display: flex;
     }
 
     .menu-icon {
         display: flex;
     }
+
+    .dropdown-content {
+        position: relative;
+        top: 0;
+        width: auto;
+        min-width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Desktop dropdown on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+
+/* Dropdown toggle for mobile */
+.dropdown-content.open {
+    display: flex;
+    flex-direction: column;
 }

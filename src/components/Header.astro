@@ -1,38 +1,67 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
+import { navData } from '../content/navData';
 import '../styles/Header.css';
 ---
+
 <header>
-	<nav>
-		<div class="internal-links">
-			<HeaderLink href="/" class="logo">
-				<img src="/favicon.svg" alt="Logo" width="75" height="75"/>
-				<span style="font-size: 2rem; font-weight: bold;"> {SITE_TITLE}</span>
-			</HeaderLink>
-			<div class="menu-links">
-				<HeaderLink href="/download">Download</HeaderLink>
-				<HeaderLink href="/blog">News</HeaderLink>
-				<HeaderLink href="/about">About</HeaderLink>
-				<HeaderLink href="/blog/get-involved">Get Involved</HeaderLink>
-			</div>
-		</div>
-		<div class="menu-icon" id="menu-button">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</nav>
+  <nav>
+    <div class="internal-links">
+      <HeaderLink href="/" class="logo">
+        <img src={navData.logo} alt="Logo" width="75" height="75" />
+        <span style="font-size: 2rem; font-weight: bold;">{SITE_TITLE}</span>
+      </HeaderLink>
+      <div class="menu-links">
+        {navData.menu.map((item) => (
+          item.dropdown ? (
+            <div class="dropdown">
+              <HeaderLink>{item.title} ↓</HeaderLink>
+              <div class="dropdown-content">
+                {item.dropdown.map((dropdownItem) => (
+                  <HeaderLink href={dropdownItem.href}>
+                    {dropdownItem.icon && <img class="social-link" src={dropdownItem.icon} alt={`${dropdownItem.title} Logo`} height={16} width={16} style={{ marginRight: '8px' }} />}
+                    <span>{dropdownItem.title}</span>
+                  </HeaderLink>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <HeaderLink href={item.href}>{item.title}</HeaderLink>
+          )
+        ))}
+      </div>
+    </div>
+    <div class="menu-icon" id="menu-button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
 </header>
 
 <script>
-	// @ts-nocheck
-	document.addEventListener('DOMContentLoaded', function () {
-		const menuButton = document.getElementById('menu-button');
-		const menuLinks = document.querySelector('.menu-links');
+  // @ts-nocheck
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.getElementById('menu-button');
+    const menuLinks = document.querySelector('.menu-links');
 
-		menuButton.addEventListener('click', function () {
-			menuLinks.classList.toggle('open');
-		});
-	});
+    menuButton.addEventListener('click', function () {
+      menuLinks.classList.toggle('open');
+    });
+
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(function (dropdown) {
+      const dropdownLink = dropdown.querySelector('a');
+
+      dropdownLink.addEventListener('click', function (e) {
+        if (window.innerWidth <= 1024) { // Mobile breakpoint
+          e.preventDefault();
+          const dropdownContent = dropdown.querySelector('.dropdown-content');
+          dropdownContent.classList.toggle('open');
+        }
+      });
+    });
+  });
 </script>
