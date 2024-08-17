@@ -1,14 +1,10 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Base from '../components/Base.astro';
 import TeamMembers from '../components/TeamMembers.astro';
 ---
 
-<Layout
-	title="About Vortex Linux"
-	description="Learn more about the Vortex Linux Org and our purpose"
-	pubDate={new Date('August 08 2021')}
->
-	
+<Base title="About Vortex Linux" description="Learn more about the Vortex Linux organization and our purpose." showCallToAction={true}>
+	<h1>About Vortex Linux</h1>
 	<p>Vortex Linux is a groundbreaking Linux distribution built for those who demand the highest levels of security, flexibility, and stability from their operating system. Whether you’re a novice or an advanced user, Vortex Linux is designed to cater to your needs, offering a unique, immutable, and atomic operating system that seamlessly integrates containers and virtual machines (VMs).</p>
 
 	<h2>Our Mission</h2>
@@ -38,7 +34,4 @@ import TeamMembers from '../components/TeamMembers.astro';
 	<p><strong>Thank you for choosing Vortex Linux. Together, we are building the future of secure, flexible, and user-friendly computing.</strong></p>
 
 	<TeamMembers />
-	
-	
-
-</Layout>
+</Base>
