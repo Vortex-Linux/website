@@ -8,6 +8,7 @@ export const navData = {
       dropdown: [
         { title: "About", href: "/about" },
         { title: "Forum", href: "https://forum.vortexlinux.org" },
+        { title: "GitHub", href: "https://github.com/Vortex-Linux/"},
         { title: "ReadTheDocs", href: "https://vortexlinux.readthedocs.io/en/latest/"},
         { title: "Team", href: "/about#team" }
       ]

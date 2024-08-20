@@ -12,7 +12,7 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
     <div class="internal-links">
       <HeaderLink href="/" class="logo">
         <img src={navData.logo} alt="Logo" width="75" height="75" />
-        <span style="font-size: 2rem; font-weight: bold;">{SITE_TITLE}</span>
+        <span style="font-size: 2rem; font-weight:">{SITE_TITLE}</span>
       </HeaderLink>
       <div class="menu-links">
         {navData.menu.map((item) => (

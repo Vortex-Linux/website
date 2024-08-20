@@ -11,10 +11,11 @@
 	--secondary-dark: #004F63;
 	--secondary-darker: #003B49;
 	--accent-one: #FFA500;
-	--accent-two: #32CD32;
-	--accent-three: #FF6B6B;
+	--accent-two: #FF6B6B;
+	--accent-three: #32CD32;
 	--accent-four: #87CEED;
 	--background: #001a1f;
+	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
 }
 
 

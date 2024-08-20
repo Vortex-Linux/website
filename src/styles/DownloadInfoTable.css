@@ -26,12 +26,12 @@
   }
   
   .tab.active {
-    background-color: var(--accent-three);
+    background-color: var(--accent-two);
     color: var(--secondary-darker);
   }
   
   .tab:hover {
-    background-color: var(--accent-three);
+    background-color: var(--accent-two);
     color: var(--secondary-dark);
   }
   
