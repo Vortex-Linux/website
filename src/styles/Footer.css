@@ -1,7 +1,7 @@
 footer {
     padding: 2em 1em 2em 1em;
-    background: black;
-    color: rgb(var(--accent));
+    background: var(--secondary-darker);
+    color: rgb(var(--secondary-white));
     text-align: center;
 }
 
@@ -19,19 +19,18 @@ h4 {
 .section {
     flex: 1; /* Each section will take up equal width */
     padding: 1em;
-    background-color: var(--light-gray); /* Background color for the sections */
+    background-color: var(--secondary-darker); /* Background color for the sections */
     border-radius: 8px;
 }
 
 /* Policies section styling */
 .policies a {
-    color: rgb(var(--accent));
     text-decoration: none;
 }
 
 .policies a:hover {
-    text-decoration: underline; /* Add underline on hover */
-    color: rgb(var(--accent-dark));
+    text-decoration: underline;
+    color: var(--accent-two);
 }
 
 .copyright {
