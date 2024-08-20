@@ -39,21 +39,14 @@ html.dark {
 }
 
 @font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-family: 'Montserrat';
+	src: url('/fonts/montserrate.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
-@font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-bold.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
 body {
-    font-family: 'Atkinson', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     text-align: left;
