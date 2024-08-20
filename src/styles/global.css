@@ -13,11 +13,11 @@
 	--secondary-darker: #87CEEB;
 	--button-text: #003B49;
 	--button-text-hover: #00869F;
-	--accent-one: #FFA500;
+	--accent-one: #004F63;
 	--accent-two: #FF6B6B;
-	--accent-three: #32CD32;
+	--accent-three: #FFA500;
 	--accent-four: #87CEED;
-	--background: #F0F0F0;
+	--background: #E5FDFD;
 	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
 }
 
@@ -39,21 +39,14 @@ html.dark {
 }
 
 @font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-family: 'Montserrat';
+	src: url('/fonts/montserrate.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
-@font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-bold.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
 body {
-    font-family: 'Atkinson', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     text-align: left;
