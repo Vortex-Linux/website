@@ -5,11 +5,31 @@
  */
 
 :root {
+	--headers-white: #F0F0F0;
+	--primary-light: #001a1f;
+	--primary-dark: #00869F;
+	--secondary-white: #001a1f;
+	--secondary-dark: #00869F;
+	--secondary-darker: #87CEEB;
+	--button-text: #003B49;
+	--button-text-hover: #00869F;
+	--accent-one: #FFA500;
+	--accent-two: #FF6B6B;
+	--accent-three: #32CD32;
+	--accent-four: #87CEED;
+	--background: #F0F0F0;
+	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
+}
+
+html.dark {
+	--headers-white: #F0F0F0;
 	--primary-light: #E5FDFD;
 	--primary-dark: #00869F;
 	--secondary-white: #F0F0F0;
 	--secondary-dark: #004F63;
 	--secondary-darker: #003B49;
+	--button-text: #003B49;
+	--button-text-hover: #004F63;
 	--accent-one: #FFA500;
 	--accent-two: #FF6B6B;
 	--accent-three: #32CD32;
@@ -17,7 +37,6 @@
 	--background: #001a1f;
 	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
 }
-
 
 @font-face {
 	font-family: 'Atkinson';
@@ -34,17 +53,17 @@
 	font-display: swap;
 }
 body {
-	font-family: 'Atkinson', sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: var(--background);
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: var(--secondary-white);
-	font-size: 20px;
-	line-height: 1.7;
+    font-family: 'Atkinson', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    background: var(--background);
+    background-size: 100% 600px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: var(--secondary-white);
+    font-size: 20px;
+    line-height: 1.7;
 }
 main {
 	width: 720px;
@@ -59,7 +78,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: white;
+	color: var(--secondary-white);
 	line-height: 1.2;
 }
 h1 {

@@ -26,12 +26,12 @@
   
   .tab.active {
     background-color: var(--accent-two);
-    color: var(--secondary-darker);
+    color: var(--button-text);
   }
   
   .tab:hover {
     background-color: var(--accent-two);
-    color: var(--secondary-dark);
+    color: var(--button-text-hover);
   }
   
   .tab-pane {

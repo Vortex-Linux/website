@@ -42,17 +42,17 @@
 
 .download-button {
     background-color: var(--accent-two); /* Background color for Download button */
-    color: var(--secondary-darker);
+    color: var(--button-text);
 }
 
 .involved-button {
     background-color: var(--accent-two); /* Background color for Get Involved button */
-    color: var(--secondary-darker);
+    color: var(--button-text);
 }
 
 .cta-button:hover {
     background-color: var(--primary-light); /* Darker shade for hover */
-    color: var(--secondary-darker);
+    color: var(--button-text-hover);
 }
 
 /* Responsive styling for smaller screens */
