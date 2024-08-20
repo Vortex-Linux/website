@@ -33,8 +33,8 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
             <HeaderLink href={item.href}>{item.title}</HeaderLink>
           )
         ))}
+        <ThemeIcon /> <!-- Theme switcher icon -->
       </div>
-      <ThemeIcon /> <!-- Theme switcher icon -->
     </div>
     <div class="menu-icon" id="menu-button">
       <span></span>
