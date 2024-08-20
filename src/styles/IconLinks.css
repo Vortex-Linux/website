@@ -10,5 +10,5 @@
   }
 
   .social-link:hover {
-    filter: invert(28%) sepia(80%) saturate(1960%) hue-rotate(167deg) brightness(97%) contrast(100%);
+    filter: brightness(0) saturate(100%) invert(73%) sepia(74%) saturate(2859%) hue-rotate(70deg) brightness(97%) contrast(82%);
   }

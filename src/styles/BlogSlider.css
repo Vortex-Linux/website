@@ -1,20 +1,18 @@
-
-
 .blog-title {
   font-size: 1.5rem;
   margin: 0rem; /* Reduced margin around title */
-  color: var(--accent);
+  color: var(--secondary-white);
 }
 
 .blog-date {
   font-size: 1rem;
-  color: var(--accent);
+  color: var(--secondary-white);
   margin-bottom: 0rem; /* Reduced margin to bring date closer to title */
 }
 
 .read-more {
   display: inline-block;
-  color: var(--accent);
+  color: var(--secondary-white);
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
@@ -22,7 +20,7 @@
 }
 
 .read-more:hover{
-  color: var(--accent-dark)
+  color: var(--accent-two)
 }
 
 @media (min-width: 768px) {

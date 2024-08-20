@@ -13,10 +13,10 @@
   }
   
   .tab {
-    background-color: var(--gray);
-    color: var(--white);
+    background-color: var(--secondary-darker);
+    color: var(--secondary-white);
     border: none;
-    padding: 1em2em;
+    padding: 1em 2em;
     cursor: pointer;
     font-size: 1.2rem;
     border-radius: 5px;
@@ -26,12 +26,13 @@
   }
   
   .tab.active {
-    background-color: var(--accent);
-    color: var(--black);
+    background-color: var(--accent-three);
+    color: var(--secondary-darker);
   }
   
   .tab:hover {
-    background-color: var(--accent-dark);
+    background-color: var(--accent-three);
+    color: var(--secondary-dark);
   }
   
   .tab-pane {

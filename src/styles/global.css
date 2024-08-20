@@ -5,17 +5,19 @@
  */
 
 :root {
-	--accent: #e5fdfd;
-	--accent-dark: #00869f;
-	--black: #000;
-	--white: #e5fdfd;
-	--gray: #535353;
-	--gray-light: #7e7e7e;
-	--gray-dark: #00869f;
-	--gray-gradient: rgba(var(--gray-light), 50%), #001a1f;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--primary-light: #E5FDFD;
+	--primary-dark: #00869F;
+	--secondary-white: #F0F0F0;
+	--secondary-dark: #004F63;
+	--secondary-darker: #003B49;
+	--accent-one: #FFA500;
+	--accent-two: #32CD32;
+	--accent-three: #FF6B6B;
+	--accent-four: #87CEED;
+	--background: #001a1f;
 }
+
+
 @font-face {
 	font-family: 'Atkinson';
 	src: url('/fonts/atkinson-regular.woff') format('woff');
@@ -35,11 +37,11 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: #001a1f;
+	background: var(--background);
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: white;
+	color: var(--secondary-white);
 	font-size: 20px;
 	line-height: 1.7;
 }
@@ -79,10 +81,10 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--secondary-white);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-two);
 }
 p {
 	margin-bottom: 1em;
@@ -107,7 +109,7 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: rgb(var(--secondary-white));
 	border-radius: 2px;
 }
 pre {
@@ -118,14 +120,14 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--primary-light);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid rgb(var(--secondary-white));
 }
 @media (max-width: 720px) {
 	body {

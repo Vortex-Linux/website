@@ -1,11 +1,11 @@
 .cta-section {
-    background-color: var(--accent-dark); /* Primary background color */
-    color: white;
+    background-color: var(--secondary-dark); /* Primary background color */
+    color: var(--secondary-white);
     padding: 3em1em;
     border-radius: 8px;
     margin: 2em0;
     padding: 2rem 0rem;
-    box-shadow: 04px12pxrgba(0, 0, 0, 0.1);
+    box-shadow: 04px 12px rgba(0, 0, 0, 0.1);
 }
 
 .cta-content {
@@ -21,7 +21,7 @@
 .cta-sectionh2 {
     font-size: 2.5rem;
     margin: 0;
-    color: var(--white);
+    color: var(--secondary-white);
     text-align: left; /* Align text to the left */
 }
 
@@ -41,28 +41,30 @@
 }
 
 .download-button {
-    background-color: var(--black); /* Background color for Download button */
-    color: var(--white);
+    background-color: var(--accent-two); /* Background color for Download button */
+    color: var(--secondary-darker);
 }
 
 .involved-button {
-    background-color: var(--black); /* Background color for Get Involved button */
-    color: var(--white);
+    background-color: var(--accent-two); /* Background color for Get Involved button */
+    color: var(--secondary-darker);
 }
 
 .cta-button:hover {
-    background-color: var(--white); /* Darker shade for hover */
-    color: var(--black);
+    background-color: var(--primary-light); /* Darker shade for hover */
+    color: var(--secondary-darker);
 }
 
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
     .cta-content {
-        flex-direction: column; /* Stack elements vertically on smaller screens */text-align: center;
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        text-align: center;
     }
 
     .cta-buttons {
-        margin-top: 1em; /* Add spacing above the buttons */justify-content: center;
+        margin-top: 1em; /* Add spacing above the buttons */
+        justify-content: center;
     }
 
     .cta-sectionh2 {
