@@ -37,16 +37,36 @@ html.dark {
 	--background: #001a1f;
 	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
 }
-
 @font-face {
-	font-family: 'Montserrat';
-	src: url('/fonts/montserrate.woff') format('woff');
+	font-family: 'Comfortaa';
+	src: url('/fonts/Comfortaa.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Italic.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Bold.woff') format('woff');
+	font-weight: 400;
+	font-style: bold;
+	font-display: swap;
+}
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     text-align: left;

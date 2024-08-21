@@ -20,7 +20,7 @@
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: bold;
-    text-shadow: 5px 5px black;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .title-mark {
@@ -30,7 +30,7 @@
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    text-shadow: 3px 3px black;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .hero-button {
