@@ -61,6 +61,10 @@ export const attributionData = {
         url: 'https://emojipedia.org/floppy-disk',
       },
       {
+        name: 'Poppins Website Font',
+        url: 'https://fonts.google.com/specimen/Poppins',
+      },
+      {
         name: 'ReadTheDocs Icon',
         url: 'https://www.svgrepo.com/svg/306650/readthedocs',
       },
@@ -72,6 +76,10 @@ export const attributionData = {
         name: 'Twitter-X Icon',
         url: 'https://icons.getbootstrap.com/icons/twitter-x/',
       },
+      {
+        name: 'YouTube Icon',
+        url: 'https://icons.getbootstrap.com/icons/youtube/',
+      }
       // Add more attributions as needed
     ]
 };
