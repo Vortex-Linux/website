@@ -2,13 +2,13 @@
 export const socialLinks = [
     {
       name: 'Facebook',
-      url: 'https://facebook.com',
+      url: 'https://www.facebook.com/people/VortexLinux/61564619819936/',
       srText: 'Go to Vortex Linux\'s Facebook',
       svgPath: `/social-icons/facebook.svg`,
     },
     {
       name: 'Instagram',
-      url: 'https://instagram.com',
+      url: 'https://www.instagram.com/vortexlinux/',
       srText: 'Go to Vortex Linux\'s Instagram',
       svgPath: `/social-icons/instagram.svg`,
     },
