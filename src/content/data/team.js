@@ -30,6 +30,12 @@ export const teamMembers = [
       imageUrl: 'https://avatars.githubusercontent.com/u/42560873?v=4',
       profileUrl: 'https://github.com/hsmith-dev',
     },
+    {
+      name: 'Giovanni Santini',
+      role: 'Software Engineer',
+      imageUrl: 'https://avatars.githubusercontent.com/u/81651399?v=4v=4',
+      profileUrl: 'https://github.com/San7o',
+    },
     // Add more team members as needed
   ];
   
