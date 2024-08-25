@@ -45,6 +45,20 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
 </header>
 
 <style>
+  .dropdown-content {
+    display: none;
+  }
+
+  .dropdown-content.open {
+    display: block;
+  }
+
+  @media (min-width: 1024px) {
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
+
   .sun { fill: black; }
   .moon { fill: transparent; }
 
@@ -89,6 +103,7 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
     const menuButton = document.getElementById('menu-button');
     const menuLinks = document.querySelector('.menu-links');
     const dropdowns = document.querySelectorAll('.dropdown');
+    
     const closeDropdowns = () => {
       dropdowns.forEach(dropdown => {
         const dropdownContent = dropdown.querySelector('.dropdown-content');
@@ -131,6 +146,8 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
 
           if (!isOpen) {
             dropdownContent.classList.add('open'); // Then open the clicked one
+          } else {
+            dropdownContent.classList.remove('open'); // Close if already open
           }
         }
       });
