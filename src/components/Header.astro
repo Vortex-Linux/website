@@ -33,7 +33,7 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
             <HeaderLink href={item.href}>{item.title}</HeaderLink>
           )
         ))}
-        <ThemeIcon /> <!-- Theme switcher icon -->
+        <ThemeIcon />
       </div>
     </div>
     <div class="menu-icon" id="menu-button">
@@ -89,6 +89,12 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
     const menuButton = document.getElementById('menu-button');
     const menuLinks = document.querySelector('.menu-links');
     const dropdowns = document.querySelectorAll('.dropdown');
+    const closeDropdowns = () => {
+      dropdowns.forEach(dropdown => {
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+        dropdownContent.classList.remove('open');
+      });
+    };
 
     // Ensure correct background is applied on initial load
     if (document.documentElement.classList.contains('light')) {
@@ -106,6 +112,9 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
     // Toggle the menu in mobile view
     menuButton.addEventListener('click', function () {
       menuLinks.classList.toggle('open');
+      if (!menuLinks.classList.contains('open')) {
+        closeDropdowns();
+      }
     });
 
     // Handle dropdowns in mobile view
@@ -116,9 +125,27 @@ const isHomePage = Astro.props.isHomePage ?? false; // Default to false
         if (window.innerWidth <= 1024) { // Mobile breakpoint
           e.preventDefault();
           const dropdownContent = dropdown.querySelector('.dropdown-content');
-          dropdownContent.classList.toggle('open');
+          const isOpen = dropdownContent.classList.contains('open');
+
+          closeDropdowns(); // Close all dropdowns first
+
+          if (!isOpen) {
+            dropdownContent.classList.add('open'); // Then open the clicked one
+          }
         }
       });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function (event) {
+      const isClickInside = header.contains(event.target);
+
+      if (!isClickInside) {
+        closeDropdowns();
+        if (window.innerWidth <= 1024) {
+          menuLinks.classList.remove('open'); // Close the menu in mobile view if click outside
+        }
+      }
     });
   });
 </script>
