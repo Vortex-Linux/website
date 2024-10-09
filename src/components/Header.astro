@@ -1,168 +1,79 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
-import { navData } from '../content/data/navData';
-import '../styles/Header.css';
-import ThemeIcon from './ThemeIcon.astro';
-
-const isHomePage = Astro.props.isHomePage ?? false; // Default to false
+import { SITE_TITLE } from "../consts";
+import { Icon } from "astro-icon/components";
+import { navData } from "../content/data/navData";
+import "../styles/Header.css";
 ---
 
-<header id="main-header" class={isHomePage ? 'home' : 'not-home'}>
-  <nav>
-    <div class="internal-links">
-      <HeaderLink href="/" class="logo">
-        <img src={navData.logo} alt="Logo" width="75" height="75" />
-        <span style="font-size: 2rem; font-weight:">{SITE_TITLE}</span>
-      </HeaderLink>
-      <div class="menu-links">
-        {navData.menu.map((item) => (
-          item.dropdown ? (
-            <div class="dropdown">
-              <HeaderLink>{item.title} ↓</HeaderLink>
-              <div class="dropdown-content">
-                {item.dropdown.map((dropdownItem) => (
-                  <HeaderLink href={dropdownItem.href}>
-                    {dropdownItem.icon && <img class="social-link" src={dropdownItem.icon} alt={`${dropdownItem.title} Logo`} height={16} width={16} style={{ marginRight: '8px' }} />}
-                    <span>{dropdownItem.title}</span>
-                  </HeaderLink>
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <a href="/">
+        <img src={navData.logo} alt={SITE_TITLE} />
+        <span>{SITE_TITLE}</span>
+      </a>
+    </div>
+    <div class="nav-items">
+      {
+        navData.menu.map((item) => (
+          <div class="nav-item">
+            <a href={item.path || item.href}>
+              {item.title}
+              {item.children && (
+                <Icon name="mdi:chevron-down" class="dropdown-indicator" />
+              )}
+            </a>
+            {item.children && (
+              <div class="dropdown">
+                {item.children.map((child) => (
+                  <a class="dropdown-item" href={child.href}>
+                    {child.title}
+                  </a>
                 ))}
               </div>
-            </div>
-          ) : (
-            <HeaderLink href={item.href}>{item.title}</HeaderLink>
-          )
-        ))}
-        <ThemeIcon />
-      </div>
+            )}
+          </div>
+        ))
+      }
     </div>
-    <div class="menu-icon" id="menu-button">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="nav-actions">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+        <Icon name="mdi:weather-sunny" class="light-icon" />
+        <Icon name="mdi:weather-night" class="dark-icon" />
+      </button>
+      <a href="#" class="download-button">Download</a>
     </div>
-  </nav>
+  </div>
 </header>
 
-<style>
-  .dropdown-content {
-    display: none;
-  }
-
-  .dropdown-content.open {
-    display: block;
-  }
-
-  @media (min-width: 1024px) {
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-  }
-
-  .sun { fill: black; }
-  .moon { fill: transparent; }
-
-  :global(.dark) .sun { fill: transparent; }
-  :global(.dark) .moon { fill: white; }
-</style>
-
-<script is:inline>
+<script>
   const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
     }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
     }
-    return 'light';
+    return "light";
   })();
 
-  if (theme === 'light') {
-    document.documentElement.classList.add('light');
-    document.documentElement.classList.remove('dark');
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
   } else {
-    document.documentElement.classList.add('dark');
-    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add("dark");
   }
 
-  window.localStorage.setItem('theme', theme);
+  window.localStorage.setItem("theme", theme);
 
   const handleToggleClick = () => {
     const element = document.documentElement;
     element.classList.toggle("dark");
-    element.classList.toggle("light");
 
     const isDark = element.classList.contains("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
-  }
+  };
 
-  document.getElementById("themeToggle").addEventListener("click", handleToggleClick);
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const header = document.getElementById('main-header');
-    const menuButton = document.getElementById('menu-button');
-    const menuLinks = document.querySelector('.menu-links');
-    const dropdowns = document.querySelectorAll('.dropdown');
-    
-    const closeDropdowns = () => {
-      dropdowns.forEach(dropdown => {
-        const dropdownContent = dropdown.querySelector('.dropdown-content');
-        dropdownContent.classList.remove('open');
-      });
-    };
-
-    // Ensure correct background is applied on initial load
-    if (document.documentElement.classList.contains('light')) {
-      header.classList.add('scrolled');
-    }
-
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else if (!document.documentElement.classList.contains('light')) {
-        header.classList.remove('scrolled');
-      }
-    });
-
-    // Toggle the menu in mobile view
-    menuButton.addEventListener('click', function () {
-      menuLinks.classList.toggle('open');
-      if (!menuLinks.classList.contains('open')) {
-        closeDropdowns();
-      }
-    });
-
-    // Handle dropdowns in mobile view
-    dropdowns.forEach(function (dropdown) {
-      const dropdownLink = dropdown.querySelector('a');
-
-      dropdownLink.addEventListener('click', function (e) {
-        if (window.innerWidth <= 1024) { // Mobile breakpoint
-          e.preventDefault();
-          const dropdownContent = dropdown.querySelector('.dropdown-content');
-          const isOpen = dropdownContent.classList.contains('open');
-
-          closeDropdowns(); // Close all dropdowns first
-
-          if (!isOpen) {
-            dropdownContent.classList.add('open'); // Then open the clicked one
-          } else {
-            dropdownContent.classList.remove('open'); // Close if already open
-          }
-        }
-      });
-    });
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function (event) {
-      const isClickInside = header.contains(event.target);
-
-      if (!isClickInside) {
-        closeDropdowns();
-        if (window.innerWidth <= 1024) {
-          menuLinks.classList.remove('open'); // Close the menu in mobile view if click outside
-        }
-      }
-    });
-  });
+  document
+    .getElementById("themeToggle")
+    ?.addEventListener("click", handleToggleClick);
 </script>
