@@ -12,7 +12,7 @@ export const navData = {
       path: "#",
       children: [
         { title: "About", href: "/about" },
-        { title: "Forum", href: "https://forum.vortexlinux.org" },
+        // { title: "Forum", href: "https://forum.vortexlinux.org" }, for future use
         { title: "Get Involved", href: "/blog/get-invovled" },
         { title: "GitHub", href: "https://github.com/Vortex-Linux/" },
         {
