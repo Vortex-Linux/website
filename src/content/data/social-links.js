@@ -39,5 +39,9 @@ export const socialLinks = [
     href: "https://github.com/Vortex-Linux",
     alt: "Github Page",
   },
-    
+  {
+    name: "mdi:linkedin",
+    href: "https://linkedin.com/company/vortexlinux",
+    alt: "Linkedin Profile",
+  },
 ];
