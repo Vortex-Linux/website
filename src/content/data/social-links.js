@@ -34,4 +34,10 @@ export const socialLinks = [
     href: "https://www.reddit.com/r/vortexlinux/",
     alt: "Reddit Profile",
   },
+  {
+    name: "mdi:github",
+    href: "https://github.com/Vortex-Linux",
+    alt: "Github Page",
+  },
+    
 ];
