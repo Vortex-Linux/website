@@ -243,17 +243,21 @@ header {
     }
 
     .nav-item .dropdown {
+        display: none;
         position: static;
         transform: none;
-        left: auto;
         box-shadow: none;
-        width: 100%;
-        display: none;
+        background-color: transparent;
         padding-left: 1rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
     }
 
-    .nav-item.dropdown-open .dropdown {
+    .nav-item.dropdown-open > .dropdown {
         display: block;
+        max-height: 500px; /* Adjust this value as needed */
+        transition: max-height 0.5s ease-in;
     }
 
     .nav-actions {
@@ -300,5 +304,10 @@ body.menu-open {
 
     .menu-toggle {
         display: none !important;
+    }
+
+    .nav-item.dropdown-open .dropdown {
+        position: absolute;
+        /* Add other styles for desktop dropdown appearance */
     }
 }

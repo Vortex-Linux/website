@@ -103,36 +103,49 @@ import "../styles/Header.css";
   });
 
   const dropdownToggles = document.querySelectorAll(".nav-item > a");
+
   dropdownToggles.forEach((toggle) => {
     toggle.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768 && toggle.nextElementSibling) {
-        e.preventDefault();
-        const parentItem = toggle.parentElement;
-        parentItem?.classList.toggle("dropdown-open");
+      const parentItem = toggle.parentElement;
+      const hasDropdown = toggle.nextElementSibling;
 
-        // Close other open dropdowns
+      if (hasDropdown) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close all other dropdowns
         dropdownToggles.forEach((otherToggle) => {
           const otherParentItem = otherToggle.parentElement;
-          if (
-            otherParentItem !== parentItem &&
-            otherParentItem?.classList.contains("dropdown-open")
-          ) {
-            otherParentItem.classList.remove("dropdown-open");
+          if (otherParentItem !== parentItem) {
+            otherParentItem?.classList.remove("dropdown-open");
           }
         });
+
+        // Toggle the clicked dropdown
+        parentItem?.classList.toggle("dropdown-open");
       }
     });
   });
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
-      navItems?.classList.remove("open");
-      menuToggle?.classList.remove("active");
-      menuBackdrop?.classList.remove("active");
-      document.body.classList.remove("menu-open");
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest(".nav-item")) {
       document.querySelectorAll(".nav-item").forEach((item) => {
         item.classList.remove("dropdown-open");
       });
     }
   });
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.classList.remove("dropdown-open");
+      });
+    }
+  });
+
+  // Remove any resize event listeners as they're no longer needed
+  window.removeEventListener("resize", () => {});
 </script>
