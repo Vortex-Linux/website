@@ -1,13 +1,47 @@
-// src/data/socialLinks.js
 export const socialLinks = [
   {
+    name: "mdi:discord",
+    href: "https://discord.com/invite/MsF24qUA5y",
+    alt: "Discord Server",
+  },
+  {
+    name: "mdi:facebook",
+    href: "https://www.facebook.com/people/VortexLinux/61564619819936/",
+    alt: "Facebook Profile",
+  },
+  {
+    name: "mdi:instagram",
+    href: "https://www.instagram.com/vortexlinux/",
+    alt: "Instagram Profile",
+  },
+  {
+    name: "mdi:twitter",
+    href: "https://x.com/Vortex_Linux",
+    alt: "X Profile",
+  },
+  {
+    name: "mdi:dev-to",
+    href: "https://dev.to/vortexlinux",
+    alt: "DEV.to Profile",
+  },
+  {
+    name: "mdi:youtube",
+    href: "https://www.youtube.com/@VortexLinux",
+    alt: "Youtube Channel",
+  },
+  {
+    name: "mdi:reddit",
+    href: "https://www.reddit.com/r/vortexlinux/",
+    alt: "Reddit Profile",
+  },
+  {
     name: "mdi:github",
-    href: "https://github.com/yourusername",
-    alt: "GitHub Profile",
+    href: "https://github.com/Vortex-Linux",
+    alt: "Github Page",
   },
   {
     name: "mdi:linkedin",
-    href: "https://www.linkedin.com/in/yourprofile",
-    alt: "LinkedIn Profile",
+    href: "https://linkedin.com/company/vortexlinux",
+    alt: "Linkedin Profile",
   },
 ];
