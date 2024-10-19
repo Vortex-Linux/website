@@ -1,29 +1,36 @@
 ---
-import Base from '../components/Base.astro';
-import TeamMembers from '../components/TeamMembers.astro';
-import WhyChoose from '../components/WhyChoose.astro';
-import KeyFeatures from '../components/KeyFeatures.astro';
-import { aboutData } from '../content/data/aboutData';
+import Base from "../components/Base.astro";
+import TeamMembers from "../components/TeamMembers.astro";
+import { aboutData } from "../content/data/aboutData";
+import "../styles/about.css";
 ---
 
-<Base title={aboutData.title} description={aboutData.description} showCallToAction={true}>
-	<h1>{aboutData.title}</h1>
-	<p>{aboutData.introText}</p>
+<Base
+  title={aboutData.title}
+  description={aboutData.description}
+  showCallToAction={true}
+>
+  <main class="about-page">
+    <section class="about-section">
+      <h1>{aboutData.title}</h1>
+      <p class="intro-text">{aboutData.introText}</p>
+    </section>
 
-	<h2>{aboutData.mission.title}</h2>
-	<p>{aboutData.mission.text}</p>
+    <section class="about-section">
+      <h2>{aboutData.mission.title}</h2>
+      <p>{aboutData.mission.text}</p>
+    </section>
 
-	<KeyFeatures />
+    <section class="about-section">
+      <h2>{aboutData.communityCollaboration.title}</h2>
+      <p>{aboutData.communityCollaboration.text}</p>
+    </section>
 
-	<WhyChoose />
+    <section class="about-section">
+      <h2>{aboutData.getInvolved.title}</h2>
+      <p class="closing-text"><strong>{aboutData.closingText}</strong></p>
+    </section>
 
-	<h2>{aboutData.communityCollaboration.title}</h2>
-	<p>{aboutData.communityCollaboration.text}</p>
-
-	<h2>{aboutData.getInvolved.title}</h2>
-	<p>{aboutData.getInvolved.text}</p>
-
-	<p><strong>{aboutData.closingText}</strong></p>
-
-	<TeamMembers />
+    <TeamMembers />
+  </main>
 </Base>

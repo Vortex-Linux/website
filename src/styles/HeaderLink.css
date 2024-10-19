@@ -1,8 +1,10 @@
 a {
-    display: inline-block;
-    text-decoration: none;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--accent);
 }
 a.active {
-    font-weight: bolder;
-    text-decoration: bold;
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--accent-secondary);
 }

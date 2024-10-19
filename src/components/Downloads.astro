@@ -1,22 +1,61 @@
 ---
-import { downloads } from '../content/data/downloads';
-import '../styles/Downloads.css';
+import { downloads } from "../content/data/downloads";
+import "../styles/Downloads.css";
+import { Icon } from "astro-icon/components";
 ---
-<section class="downloads-section">
-    <div class="downloads-grid">
-        {downloads.map((download) => (
-        <div class="download-card">
-            <h3 class="download-name">{download.name}</h3>
-            <p class="download-description">{download.description}</p>
-            <p class="download-info">Version: {download.version}</p>
-            <p class="download-info">Release Date: {download.releaseDate}</p>
-            <p class="download-info">Size: {download.size}</p>
-            <p class="download-info">Checksum: {download.checksum}</p>
-            <a href={download.magnetUrl} class="download-button" download>Magnet 🧲</a>
-            <a href={download.torrentUrl} class="download-button" download>Torrent 📥</a>
-            <a href={download.mirrorUrl} class="download-button" download>Mirror 💾</a>
-        </div>
-        ))}
-    </div>
-</section>
 
+<section class="downloads-section">
+  <h2 class="section-title">AVAILABLE DOWNLOADS</h2>
+  <div class="downloads-grid">
+    {
+      downloads.map((download) => (
+        <div class="download-card">
+          <div class="download-header">
+            <Icon
+              name={
+                download.name.includes("Stable")
+                  ? "mdi:rocket-launch"
+                  : "mdi:test-tube"
+              }
+              class="download-icon"
+              style={`color: ${download.name.includes("Stable") ? "#4CAF50" : "#2196F3"};`}
+            />
+            <h3 class="download-name">{download.name}</h3>
+          </div>
+          <p class="download-description">{download.description}</p>
+          <div class="download-details">
+            <div class="detail-item">
+              <Icon name="mdi:tag-outline" class="detail-icon" />
+              <span class="detail-value">{download.version}</span>
+            </div>
+            <div class="detail-item">
+              <Icon name="mdi:calendar" class="detail-icon" />
+              <span class="detail-value">{download.releaseDate}</span>
+            </div>
+            <div class="detail-item">
+              <Icon name="mdi:harddisk" class="detail-icon" />
+              <span class="detail-value">{download.size}</span>
+            </div>
+          </div>
+          <div class="download-buttons">
+            {["magnet", "torrent", "mirror"].map((type) => (
+              <a
+                href={download[`${type}Url`]}
+                class={`download-button ${type}-button`}
+                download
+              >
+                <Icon
+                  name={`mdi:${type === "magnet" ? "magnet" : type === "torrent" ? "download" : "content-save"}`}
+                  class="button-icon"
+                />
+                <span class="button-text">
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,12 +1,23 @@
 ---
-import { whyChooseData } from '../content/data/whyChooseData';
+import { whyChooseData } from "../content/data/whyChooseData";
+import "../styles/WhyChooseUs.css";
 ---
 
-<h2>Why Choose Vortex Linux?</h2>
-<ul>
-	{whyChooseData.map(item => (
-		<li>
-			<b>{item.title}:</b> {item.description}
-		</li>
-	))}
-</ul>
+<section class="why-choose-vortex">
+  <div class="content">
+    <h2>Why choose Vortex Linux?</h2>
+    <div class="reasons-grid">
+      {
+        whyChooseData.map((reason, index) => (
+          <div class="reason-item">
+            <div class="reason-number">{index + 1}</div>
+            <div class="reason-content">
+              <h3>{reason.title}</h3>
+              <p>{reason.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

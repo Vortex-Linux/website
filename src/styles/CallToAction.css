@@ -1,73 +1,107 @@
-.cta-section {
-    background-color: var(--secondary-dark); /* Primary background color */
-    color: var(--secondary-white);
-    padding: 3em1em;
-    border-radius: 8px;
-    margin: 2em0;
-    padding: 2rem 0rem;
-    box-shadow: 04px 12px rgba(0, 0, 0, 0.1);
+.cta {
+  position: relative;
+  background-image: url("/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 3rem 1rem;
+  color: var(--text-primary);
+  width: 100%;
+  min-height: 300px; /* Ensure minimum height for small screens */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .cta-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 01em;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.cta-sectionh2 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: var(--secondary-white);
-    text-align: left; /* Align text to the left */
+.cta h2 {
+  font-size: clamp(1.5rem, 5vw, 2.441em);
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 .cta-buttons {
-    display: flex;
-    gap: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 1rem; /* Increased padding for more white space */
-    font-size: 1.5rem; /* Increased font size for larger text */
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.download-button {
-    background-color: var(--accent-two); /* Background color for Download button */
-    color: var(--button-text);
+.download {
+  background-color: var(--accent);
+  color: var(--button-text);
 }
 
-.involved-button {
-    background-color: var(--accent-two); /* Background color for Get Involved button */
-    color: var(--button-text);
+.get-involved {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 
 .cta-button:hover {
-    background-color: var(--primary-light); /* Darker shade for hover */
-    color: var(--button-text-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive styling for smaller screens */
-@media (max-width: 768px) {
-    .cta-content {
-        flex-direction: column; /* Stack elements vertically on smaller screens */
-        text-align: center;
-    }
+@media (min-width: 600px) {
+  .cta-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
 
-    .cta-buttons {
-        margin-top: 1em; /* Add spacing above the buttons */
-        justify-content: center;
-    }
+  .cta-button {
+    width: auto;
+  }
+}
 
-    .cta-sectionh2 {
-        margin-bottom: 1em;
-    }
+@media (max-width: 600px) {
+  .cta-content {
+    width: 90%; /* Adjust this value to control the width of the buttons */
+    margin: 0 auto; /* This centers the content */
+  }
+
+  .cta-buttons {
+    width: 100%;
+  }
+
+  .cta-button {
+    width: 100%;
+    margin-bottom: 1rem; /* Adds space between buttons */
+  }
 }

@@ -1,111 +1,187 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { Icon } from "astro-icon/components";
+import "../../styles/blog.css";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+const allPosts = await getCollection("blog");
+
+const allCategories = [
+  "All Posts",
+  ...new Set(allPosts.flatMap((post) => post.data.categories)),
+];
+
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+function getCategoryIcon(category: string): string {
+  const formattedCategory = category.toLowerCase().replace(/\s+/g, "-");
+
+  const categoryIconMap: Record<string, string> = {
+    "all-posts": "format-list-bulleted",
+    security: "shield-check",
+    community: "account-group",
+    performance: "speedometer",
+    development: "code-braces",
+    updates: "update",
+    tutorials: "school",
+    news: "newspaper",
+    features: "star-outline",
+    "bug-fixes": "bug",
+    announcements: "bullhorn",
+    "tips-and-tricks": "lightbulb",
+    "user-experience": "account-cog",
+    customization: "palette",
+    networking: "lan",
+    hardware: "desktop-tower",
+    software: "application",
+    privacy: "eye-off",
+    "open-source": "open-source-initiative",
+    documentation: "file-document",
+    // Add more category icons as needed ( see https://pictogrammers.com/library/mdi/ to find new icons )
+  };
+
+  if (categoryIconMap[formattedCategory]) {
+    return `mdi:${categoryIconMap[formattedCategory]}`;
+  }
+
+  // If no specific icon, return a default icon (can be changed to any icon in mdi (material design icons))
+  return "mdi:tag";
+}
+
+async function getGitHubAvatar(author: string) {
+  if (!author.includes("/")) return null;
+  const username = author.split("/").pop();
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data.avatar_url;
+    }
+  } catch (error) {
+    console.error("Error fetching GitHub avatar:", error);
+  }
+  return null;
+}
 ---
 
-<!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--accent));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent-dark));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.slug}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="blog-container">
+      <div class="sidebar">
+        <nav>
+          <ul>
+            {
+              allCategories.map((cat) => (
+                <li>
+                  <a href="#" class="category-filter" data-category={cat}>
+                    <Icon name={getCategoryIcon(cat as string)} />
+                    {cat}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+      <div class="blog-posts" id="blog-posts-container">
+        {
+          await Promise.all(
+            sortedPosts.map(async (post) => {
+              const avatarUrl = await getGitHubAvatar(
+                post.data.author || "Vortex Linux"
+              );
+              return (
+                <article
+                  class="post-item"
+                  data-categories={post.data.categories.join(",")}
+                >
+                  <a href={`/blog/${post.slug}/`}>
+                    <div class="post-content">
+                      <h2 class="post-title">{post.data.title}</h2>
+                      <div class="post-author">
+                        {avatarUrl ? (
+                          <img
+                            src={avatarUrl}
+                            alt={post.data.author}
+                            class="author-avatar"
+                          />
+                        ) : (
+                          <Icon name="mdi:account" />
+                        )}
+                        <span class="author-name">
+                          {post.data.author?.includes("/")
+                            ? post.data.author.split("/").pop()
+                            : post.data.author || "Vortex Linux"}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="post-date">
+                      <FormattedDate date={post.data.pubDate} />
+                    </div>
+                  </a>
+                </article>
+              );
+            })
+          )
+        }
+      </div>
+    </main>
+    <Footer />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const categoryLinks = document.querySelectorAll(".category-filter");
+        const blogPosts = document.querySelectorAll(".post-item");
+        const blogPostsContainer = document.getElementById(
+          "blog-posts-container"
+        );
+
+        categoryLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const target = e.target as HTMLElement;
+            const closestLink = target.closest("a");
+            if (closestLink instanceof HTMLAnchorElement) {
+              const selectedCategory = closestLink.dataset.category;
+
+              categoryLinks.forEach((l) => l.classList.remove("active"));
+              closestLink.classList.add("active");
+
+              blogPosts.forEach((post) => {
+                if (post instanceof HTMLElement) {
+                  const postCategories =
+                    post.dataset.categories?.split(",") || [];
+                  if (
+                    selectedCategory === "All Posts" ||
+                    postCategories.includes(selectedCategory || "")
+                  ) {
+                    post.style.display = "block";
+                  } else {
+                    post.style.display = "none";
+                  }
+                }
+              });
+
+              history.pushState(
+                null,
+                "",
+                selectedCategory === "All Posts"
+                  ? "/blog"
+                  : `/blog?category=${selectedCategory}`
+              );
+            }
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

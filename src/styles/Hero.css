@@ -1,89 +1,155 @@
 .hero {
-    background-image: url("/banner.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: calc(70vh - 60px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 0 20px;
-    opacity: 0.9;
-    position: relative;
+  background-image: url("/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(70vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  text-align: center;
+  padding: 0 20px;
+  opacity: 0.9;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.highlight {
+  color: var(--accent);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  color: var(--text-primary);
+}
+
+.download-btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--button-text);
+  padding: 0.75rem 2rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.download-btn:hover {
+  background-color: var(--accent-secondary);
+  color: var(--button-text);
+  text-decoration: none;
+}
+
+[data-icon] {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.social-links-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.follow-text {
+  color: #ffffff;
+  margin-right: 1rem;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: #ffffff;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.social-links a:hover {
+  opacity: 1;
+}
+
+.social-links [data-icon] {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 768px) {
+  .social-links-container {
+    flex-direction: column;
   }
 
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1;
+  .follow-text {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
   }
+}
 
-  .hero-content {
-    max-width: 800px;
-    position: relative;
-    z-index: 2;
-  }
+@media (max-width: 375px) {
   h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  .highlight {
-    color: #4fd1c5;
+    font-size: 2rem;
   }
   .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    font-size: 1rem;
   }
-  .download-btn {
-    display: inline-block;
-    background-color: #4fd1c5;
-    color: #1a202c;
-    padding: 0.75rem 2rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    margin-bottom: 2rem;
-  }
-  .download-btn:hover {
-    background-color: #38b2ac;
-  }
-  .social-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  .social-links span {
-    opacity: 0.8;
-  }
-  .social-icon {
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    color: white;
-    text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .social-icon:hover {
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.3);
-  }
-  [data-icon] {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-  }
+}
+
+/* The light theme dosnt work for the hero section if this is removed */
+.hero h1 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero .subtitle {
+  font-size: 1.2rem; /* Increase font size */
+  color: #ffffff; /* White text for better contrast */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+}
+
+.download-btn {
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.download-btn:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+.social-links {
+  color: #ffffff;
+}

@@ -1,14 +1,26 @@
 ---
-import Base from '../components/Base.astro';
-import Downloads from '../components/Downloads.astro';
-import DownloadInfoTable from '../components/DownloadInfoTable.astro';
+import Base from "../components/Base.astro";
+import Downloads from "../components/Downloads.astro";
+import DownloadInfoTable from "../components/DownloadInfoTable.astro";
 ---
 
-<Base title="Download Vortex Linux" description="Get the latest version of Vortex Linux">
-	<h1>Under Development</h1>
-	<h3>Stay tuned for our 0.1 release.</h3>
-	<p>The below links currently are not active and showing what will come.</p>
-	<p>For the latest news, <a href="https://discord.gg/MsF24qUA5y">join our Discord</a> or <a href="https://vortexlinux.readthedocs.io/en/latest/contributing.html">contribute to the project</a>.</p>
-	<DownloadInfoTable />
-	<Downloads />
+<Base
+  title="Download Vortex Linux"
+  description="Get the latest version of Vortex Linux"
+>
+  <div class="download-title">
+    <h1>Under Development</h1>
+    <h3>Stay tuned for our 0.1 release.</h3>
+    <p>The below links currently are not active and showing what will come.</p>
+    <p>
+      For the latest news, <a href="https://discord.gg/MsF24qUA5y"
+        >join our Discord</a
+      > or <a
+        href="https://vortexlinux.readthedocs.io/en/latest/contributing.html"
+        >contribute to the project</a
+      >.
+    </p>
+  </div>
+  <DownloadInfoTable />
+  <Downloads />
 </Base>

@@ -5,84 +5,95 @@
  */
 
 :root {
-	--headers-white: #F0F0F0;
-	--primary-light: #001a1f;
-	--primary-dark: #00869F;
-	--secondary-white: #001a1f;
-	--secondary-dark: #00869F;
-	--secondary-darker: #87CEEB;
-	--button-text: #003B49;
-	--button-text-hover: #00869F;
-	--accent-one: #004F63;
-	--accent-two: #FF6B6B;
-	--accent-three: #FFA500;
-	--accent-four: #87CEED;
-	--background: #E5FDFD;
-	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
+  /* Light theme colors */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --background-primary: #f8f9fa;
+  --background-secondary: #ffffff;
+  --accent: #4fd1c5;
+  --accent-secondary: #38b2ac;
+  --button-text: #ffffff;
+  --border-color: #e0e0e0;
+  --hover-color: #e8e8e8;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --error-color: #e74c3c;
+  --icon-color: #333333;
+  --icon-background: rgba(51, 51, 51, 0.1);
+  --icon-background-hover: rgba(51, 51, 51, 0.2);
+  --icon-color-hover: #000000;
 }
 
 html.dark {
-	--headers-white: #F0F0F0;
-	--primary-light: #E5FDFD;
-	--primary-dark: #00869F;
-	--secondary-white: #F0F0F0;
-	--secondary-dark: #004F63;
-	--secondary-darker: #003B49;
-	--button-text: #003B49;
-	--button-text-hover: #004F63;
-	--accent-one: #FFA500;
-	--accent-two: #FF6B6B;
-	--accent-three: #32CD32;
-	--accent-four: #87CEED;
-	--background: #001a1f;
-	--accent-filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(6388%) hue-rotate(323deg) brightness(109%) contrast(102%);
+  /* Dark theme colors */
+  --text-primary: #f0f0f0;
+  --text-secondary: #cccccc;
+  --background-primary: #121212;
+  --background-secondary: #1e1e1e;
+  --accent: #4fd1c5;
+  --accent-secondary: #81e6d9;
+  --button-text: #121212;
+  --border-color: #333333;
+  --hover-color: #2a2a2a;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --error-color: #e74c3c;
+  --icon-color: #f0f0f0;
+  --icon-background: rgba(240, 240, 240, 0.1);
+  --icon-background-hover: rgba(240, 240, 240, 0.2);
+  --icon-color-hover: #ffffff;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("/fonts/Comfortaa.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-	font-family: 'Comfortaa';
-	src: url('/fonts/Comfortaa.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 @font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Italic.woff') format('woff');
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-}
-@font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Bold.woff') format('woff');
-	font-weight: 400;
-	font-style: bold;
-	font-display: swap;
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.woff") format("woff");
+  font-weight: 400;
+  font-style: bold;
+  font-display: swap;
 }
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    background: var(--background);
-    background-size: 100% 600px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    color: var(--secondary-white);
-    font-size: 20px;
-    line-height: 1.7;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+  padding: 0 1rem;
+  flex: 1 0 auto;
+  box-sizing: border-box;
 }
 h1,
 h2,
@@ -90,101 +101,119 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
-	color: var(--secondary-white);
-	line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+  font-size: 3.052em;
 }
 h2 {
-	font-size: 2.441em;
+  font-size: 2.441em;
 }
 h3 {
-	font-size: 1.953em;
+  font-size: 1.953em;
 }
 h4 {
-	font-size: 1.563em;
+  font-size: 1.563em;
 }
 h5 {
-	font-size: 1.25em;
+  font-size: 1.25em;
 }
 strong,
 b {
-	font-weight: 700;
+  font-weight: 700;
 }
 a {
-	color: var(--secondary-white);
+  color: var(--accent-primary);
+  text-decoration: none;
 }
 a:hover {
-	color: var(--accent-two);
+  color: var(--accent-secondary);
+  text-decoration: underline;
 }
 p {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 textarea {
-	width: 100%;
-	font-size: 16px;
+  width: 100%;
+  font-size: 16px;
 }
 input {
-	font-size: 16px;
+  font-size: 16px;
 }
 table {
-	width: 100%;
+  width: 100%;
 }
 img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 code {
-	padding: 2px 5px;
-	background-color: rgb(var(--secondary-white));
-	border-radius: 2px;
+  padding: 2px 5px;
+  background-color: rgb(var(--secondary-white));
+  border-radius: 2px;
 }
 pre {
-	padding: 1.5em;
-	border-radius: 8px;
+  padding: 1.5em;
+  border-radius: 8px;
 }
 pre > code {
-	all: unset;
+  all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--primary-light);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
+  border-left: 4px solid var(--primary-light);
+  padding: 0 0 0 20px;
+  margin: 0px;
+  font-size: 1.333em;
 }
 hr {
-	border: none;
-	border-top: 1px solid rgb(var(--secondary-white));
+  border: none;
+  border-top: 1px solid rgb(var(--secondary-white));
 }
 @media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+  body {
+    font-size: 18px;
+  }
+  main {
+    padding: 1em;
+  }
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px 1px 1px 1px);
+  /* maybe deprecated but we need to support legacy browsers */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* modern browsers, clip-path works inwards from each corner */
+  clip-path: inset(50%);
+  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+  white-space: nowrap;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 0 2rem;
+  }
 }

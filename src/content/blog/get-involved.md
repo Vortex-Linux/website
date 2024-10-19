@@ -1,8 +1,10 @@
 ---
+author: 'Vortex Linux' # change to the authors github url to get the avatar working.
 title: 'Get Involved with Vortex Linux'
 description: 'Vortex Linux is a community driven project.'
 pubDate: 'Jul 16 2024'
 heroImage: '/blog-imgs/get-involved-photo.jpg'
+categories: ['Community']
 ---
 
 At Vortex Linux, we believe in the power of community and collaboration. Our project thrives on the contributions of individuals who are passionate about open-source software, security, and making a difference in the Linux world. Whether you're a seasoned developer, a designer, a writer, or someone new to the world of Linux, there are many ways you can get involved and help shape the future of Vortex Linux.

@@ -1,19 +1,36 @@
 ---
-import { teamMembers } from '../content/data/team';
-import '../styles/TeamMembers.css';
+import { teamMembers } from "../content/data/team";
+import { Icon } from "astro-icon/components";
+import "../styles/TeamMembers.css";
 ---
-<section class="team-section" id="team">
-    <h2 class="team-title">Meet the Team</h2>
-    <div class="team-grid">
-        {teamMembers.map((member) => (
-            <div class="team-member">
-            <a href={member.profileUrl}>
-                <img src={member.imageUrl} alt={`${member.name}'s Profile Picture`} class="team-photo">
-                <h3 class="team-name">{member.name}</h3>
-                <p class="team-role">{member.role}</p>
-            </a>
-            </div>
-        ))}
-    </div>
-</section>
 
+<section class="team-section" id="team">
+  <h2 class="team-title">Meet the Team</h2>
+  <div class="team-grid">
+    {
+      teamMembers.map((member, index) => (
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-photo-wrapper">
+              <img
+                src={member.imageUrl}
+                alt={`${member.name}'s Profile Picture`}
+                class="team-photo"
+              />
+              <div class="team-member-index">{index + 1}</div>
+            </div>
+            <h3 class="team-name">{member.name}</h3>
+            <p class="team-role">{member.role}</p>
+            <a
+              href={member.profileUrl}
+              class="team-link"
+              aria-label={`View ${member.name}'s profile`}
+            >
+              <Icon name="mdi:arrow-top-right" />
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

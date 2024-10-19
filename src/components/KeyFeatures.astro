@@ -1,12 +1,25 @@
 ---
-import { keyFeaturesData } from '../content/data/keyFeaturesData';
+import { keyFeaturesData } from "../content/data/keyFeaturesData";
+import { Icon } from "astro-icon/components";
+import "../styles/KeyFeatures.css";
 ---
 
-<h2>Key Features</h2>
-<ul>
-	{keyFeaturesData.map(feature => (
-		<li>
-			<b>{feature.title}:</b> {feature.description}
-		</li>
-	))}
-</ul>
+<section class="key-features">
+  <h2>Key Features</h2>
+  <div class="features-grid">
+    {
+      keyFeaturesData.map((feature) => (
+        <div class="feature">
+          <div class="icon">
+            <Icon name={`mdi:${feature.icon}`} />
+          </div>
+          <div class="feature-content">
+            <h3>{feature.title}</h3>
+            <div class="feature-line" />
+            <p>{feature.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

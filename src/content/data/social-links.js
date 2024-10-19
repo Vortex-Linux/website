@@ -1,10 +1,5 @@
 export const socialLinks = [
   {
-    name: "mdi:discord",
-    href: "https://discord.com/invite/MsF24qUA5y",
-    alt: "Discord Server",
-  },
-  {
     name: "mdi:facebook",
     href: "https://www.facebook.com/people/VortexLinux/61564619819936/",
     alt: "Facebook Profile",
@@ -33,5 +28,10 @@ export const socialLinks = [
     name: "mdi:reddit",
     href: "https://www.reddit.com/r/vortexlinux/",
     alt: "Reddit Profile",
+  },
+  {
+    name: "mdi:linkedin",
+    href: "https://linkedin.com/company/vortexlinux",
+    alt: "Linkedin Profile",
   },
 ];
