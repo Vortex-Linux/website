@@ -1,32 +1,32 @@
 .attribution-section {
-    padding: 4em 1em;
-    text-align: center;
-    }
+  padding: 4em 1em;
+  text-align: center;
+}
 
-    .attribution-title {
-    font-size: 2.5rem;
-    margin-bottom: 1em;
-    color: var(--secondary-white);
-    font-weight: bold;
-    }
+.attribution-title {
+  font-size: 2.441em;
+  margin-bottom: 1em;
+  color: var(--text-primary);
+  font-weight: bold;
+}
 
-    .attribution-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    }
+.attribution-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .attribution-list li {
-    margin-bottom: 1em;
-    }
+.attribution-list li {
+  margin-bottom: 1em;
+}
 
-    .attribution-list a {
-    color: var(--secondary-white);
-    text-decoration: none;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-    }
+.attribution-list a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-    .attribution-list a:hover {
-    color: var(--accent-three);
-    text-decoration: underline;
-    }
+.attribution-list a:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}

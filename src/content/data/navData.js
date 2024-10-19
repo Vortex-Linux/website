@@ -9,17 +9,16 @@ export const navData = {
     },
     {
       title: "Info",
-      path: "#",
       children: [
         { title: "About", href: "/about" },
+        { title: "Team", href: "/about#team" },
         // { title: "Forum", href: "https://forum.vortexlinux.org" }, for future use
-        { title: "Get Involved", href: "/blog/get-invovled" },
+        { title: "Get Involved", href: "/blog/get-involved" },
         { title: "GitHub", href: "https://github.com/Vortex-Linux/" },
         {
-          title: "ReadTheDocs",
+          title: "Docs",
           href: "https://vortexlinux.readthedocs.io/en/latest/",
         },
-        { title: "Team", href: "/about#team" },
       ],
     },
   ],

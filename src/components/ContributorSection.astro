@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+import { communityLinks } from "../content/data/community-links";
+import "../styles/Contributor.css";
+---
+
+<section class="contributor-section">
+  <h2>We are actively looking for contributors</h2>
+  <div class="link-container">
+    {
+      communityLinks.map((link) => (
+        <a href={link.url} class="link-item">
+          <Icon name={link.icon} />
+          <span>{link.name}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="about">
+    <h1>Welcome to Vortex Linux</h1>
+    <p>
+      Vortex Linux is a groundbreaking Linux distribution designed for maximum
+      security, flexibility, and stability. By seamlessly integrating containers
+      and virtual machines (VMs), Vortex Linux offers a unique, immutable, and
+      atomic operating system that caters to the needs of both novice and
+      advanced users.
+    </p>
+  </div>
+</section>

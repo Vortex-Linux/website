@@ -1,56 +1,64 @@
 ---
-import { downloadInfoTable } from '../content/data/download-info-table';
-import '../styles/DownloadInfoTable.css';
+import { downloadInfoTable } from "../content/data/download-info-table";
+import "../styles/DownloadInfoTable.css";
 
 const tabs = Object.keys(downloadInfoTable);
 ---
 
 <section class="downloads-info-section">
-  <!-- Tabs -->
-  <div class="tabs">
-    {tabs.map((tab) => (
-      <button
-        class="tab"
-        id={`${tab}-tab`}
-        data-target={`${tab}-content`}
-      >
-        {downloadInfoTable[tab].title}
-      </button>
-    ))}
-  </div>
-
-  <!-- Tab Content -->
-  {tabs.map((tab) => (
-    <div id={`${tab}-content`} class="tab-pane">
-      {downloadInfoTable[tab].content.map((item) => (
-        <p class="tab-content-item">{item}</p>
-      ))}
+  <h2 class="section-title">DOWNLOAD INFORMATION</h2>
+  <div class="tabs-container">
+    <div class="tabs">
+      {
+        tabs.map((tab, index) => (
+          <button
+            class={`tab ${index === 0 ? "active" : ""}`}
+            id={`${tab}-tab`}
+            data-target={`${tab}-content`}
+          >
+            {downloadInfoTable[tab].title}
+          </button>
+        ))
+      }
     </div>
-  ))}
+
+    <div class="tab-content">
+      {
+        tabs.map((tab, index) => (
+          <div
+            id={`${tab}-content`}
+            class={`tab-pane ${index === 0 ? "active" : ""}`}
+          >
+            {downloadInfoTable[tab].content.map((item) => (
+              <p class="tab-content-item">{item}</p>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>
 
 <script>
-//@ts-nocheck
-  document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.tab');
-    const panes = document.querySelectorAll('.tab-pane');
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tab");
+    const panes = document.querySelectorAll(".tab-pane");
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        const target = tab.getAttribute('data-target');
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        const target = tab.getAttribute("data-target");
 
-        // Remove active classes from all tabs and panes
-        tabs.forEach(t => t.classList.remove('active'));
-        panes.forEach(pane => pane.classList.remove('active'));
+        tabs.forEach((t) => t.classList.remove("active"));
+        panes.forEach((pane) => pane.classList.remove("active"));
 
-        // Add active class to the clicked tab and corresponding pane
-        tab.classList.add('active');
-        document.getElementById(target).classList.add('active');
+        tab.classList.add("active");
+        if (target) {
+          const targetElement = document.getElementById(target);
+          if (targetElement) {
+            targetElement.classList.add("active");
+          }
+        }
       });
     });
-
-    // Initialize the first tab as active
-    tabs[0].classList.add('active');
-    panes[0].classList.add('active');
   });
 </script>

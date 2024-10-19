@@ -1,19 +1,14 @@
 ---
-import Base from '../components/Base.astro';
-import BlogSlider from '../components/BlogSlider.astro';
-import WhyChoose from '../components/WhyChoose.astro';
-import KeyFeatures from '../components/KeyFeatures.astro';
-import { indexData } from '../content/data/indexData';
+import Base from "../components/Base.astro";
+import BlogSlider from "../components/BlogSlider.astro";
+import WhyChoose from "../components/WhyChoose.astro";
+import KeyFeatures from "../components/KeyFeatures.astro";
+import ContributorSection from "../components/ContributorSection.astro";
 ---
 
 <Base isHomePage={true} showCallToAction={true}>
-	<p>
-		<h1>{indexData.welcomeMessage}</h1> {indexData.introText}
-	</p>
-	<br><br>
-	
-	<KeyFeatures />
-	<br>
-	<WhyChoose />
-	<BlogSlider />
+  <ContributorSection />
+  <KeyFeatures />
+  <WhyChoose />
+  <BlogSlider />
 </Base>

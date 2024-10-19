@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import FormattedDate from "./FormattedDate.astro";
+
+const { post } = Astro.props;
+---
+
+<article class="blog-card">
+  <a href={`/blog/${post.slug}/`}>
+    <div class="blog-card-image">
+      <Image
+        src={post.data.heroImage}
+        alt={post.data.title}
+        width={400}
+        height={250}
+        format="webp"
+        quality={80}
+        class="w-full h-[250px] object-cover"
+      />
+    </div>
+    <div class="blog-card-content">
+      <h3>{post.data.title}</h3>
+      <p class="date">
+        <FormattedDate date={post.data.pubDate} />
+      </p>
+      <p class="description">{post.data.description}</p>
+    </div>
+  </a>
+</article>

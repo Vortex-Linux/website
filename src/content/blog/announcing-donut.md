@@ -1,8 +1,10 @@
 ---
+author: 'Vortex Linux' # change to the authors github url to get the avatar working.
 title: 'Vortex Linux v0.1 (Donut) Coming Soon'
 description: 'We are excited to announce that Virtual Linux v0.1 (Donut) will be released in the coming future!'
 pubDate: 'August 16 2024'
 heroImage: '/blog-imgs/vortex_linux_post.jpg'
+categories: ['Security']
 ---
 
 We're thrilled to announce the upcoming release of Vortex Linux 0.1, codenamed "Donut." Scheduled to arrive by the end of 2024 or early 2025, this first release marks a significant milestone in our journey to provide a secure, flexible, and user-friendly Linux distribution.

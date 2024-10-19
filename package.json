@@ -16,6 +16,7 @@
     "@iconify-json/mdi": "^1.2.1",
     "astro": "^4.15.11",
     "astro-icon": "^1.1.1",
+    "signal-exit": "^4.1.0",
     "solid-js": "^1.8.21"
   }
 }

@@ -3,6 +3,10 @@ import { SITE_TITLE } from "../consts";
 import { Icon } from "astro-icon/components";
 import { navData } from "../content/data/navData";
 import "../styles/Header.css";
+
+const currentPath = Astro.url.pathname;
+const isDownloadPage =
+  currentPath === "/download" || currentPath === "/download/";
 ---
 
 <header>
@@ -46,7 +50,13 @@ import "../styles/Header.css";
         <Icon name="mdi:weather-sunny" class="light-icon" />
         <Icon name="mdi:weather-night" class="dark-icon" />
       </button>
-      <a href="#" class="download-button desktop-only">Download</a>
+      {
+        !isDownloadPage && (
+          <a href="/download" class="download-button desktop-only">
+            Download
+          </a>
+        )
+      }
     </div>
   </div>
 </header>
