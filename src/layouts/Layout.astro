@@ -1,0 +1,180 @@
+---
+import { SITE_TITLE } from "../consts";
+import { Icon } from "astro-icon/components";
+import { navData } from "../content/data/navData";
+import "../styles/Header.css";
+
+const currentPath = Astro.url.pathname;
+const isDownloadPage =
+  currentPath === "/download" || currentPath === "/download/";
+const { title, description, hasHero } = Astro.props;
+---
+
+<html lang="en" class={`${theme}`}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}</title>
+    <meta name="description" content={description || "Vortex Linux"} />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class={hasHero ? "hero-page" : ""}>
+    <header class="header">
+      <div class="header-content">
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="logo-container">
+          <a href="/" class="logo">
+            <img src={navData.logo} alt={SITE_TITLE} />
+            <span class="site-title">{SITE_TITLE}</span>
+          </a>
+        </div>
+        <nav class="nav-items">
+          {
+            navData.menu.map((item) => (
+              <div class="nav-item">
+                <a href={item.path || item.href}>
+                  {item.title}
+                  {item.children && (
+                    <Icon name="mdi:chevron-down" class="dropdown-indicator" />
+                  )}
+                </a>
+                {item.children && (
+                  <div class="dropdown">
+                    {item.children.map((child) => (
+                      <a class="dropdown-item" href={child.href}>
+                        {child.title}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          }
+        </nav>
+        <div class="nav-actions">
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <Icon name="mdi:weather-sunny" class="light-icon" />
+            <Icon name="mdi:weather-night" class="dark-icon" />
+          </button>
+          {
+            !isDownloadPage && (
+              <a href="/download" class="download-button desktop-only">
+                Download
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </header>
+    <div id="menuBackdrop" class="menu-backdrop"></div>
+
+    <script>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      function setTheme(newTheme: string) {
+        const root = document.documentElement;
+        root.classList.remove("light", "dark");
+        root.classList.add(newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+
+      setTheme(theme as string);
+
+      const handleToggleClick = () => {
+        const isDark = document.documentElement.classList.contains("dark");
+        setTheme(isDark ? "light" : "dark");
+      };
+
+      document
+        .getElementById("themeToggle")
+        ?.addEventListener("click", handleToggleClick);
+
+      const menuToggle = document.getElementById("menuToggle");
+      const navItems = document.querySelector(".nav-items");
+      const menuBackdrop = document.getElementById("menuBackdrop");
+
+      menuToggle?.addEventListener("click", () => {
+        navItems?.classList.toggle("open");
+        menuToggle.classList.toggle("active");
+        menuBackdrop?.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
+      });
+
+      menuBackdrop?.addEventListener("click", () => {
+        navItems?.classList.remove("open");
+        menuToggle?.classList.remove("active");
+        menuBackdrop.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("dropdown-open");
+        });
+      });
+
+      const dropdownToggles = document.querySelectorAll(".nav-item > a");
+
+      dropdownToggles.forEach((toggle) => {
+        toggle.addEventListener("click", (e) => {
+          const parentItem = toggle.parentElement;
+          const hasDropdown = toggle.nextElementSibling;
+
+          if (hasDropdown) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close all other dropdowns
+            dropdownToggles.forEach((otherToggle) => {
+              const otherParentItem = otherToggle.parentElement;
+              if (otherParentItem !== parentItem) {
+                otherParentItem?.classList.remove("dropdown-open");
+              }
+            });
+
+            // Toggle the clicked dropdown
+            parentItem?.classList.toggle("dropdown-open");
+          }
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        if (!target.closest(".nav-item")) {
+          document.querySelectorAll(".nav-item").forEach((item) => {
+            item.classList.remove("dropdown-open");
+          });
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll(".nav-item").forEach((item) => {
+            item.classList.remove("dropdown-open");
+          });
+        }
+      });
+
+      // Remove any resize event listeners as they're no longer needed
+      window.removeEventListener("resize", () => {});
+    </script>
+  </body>
+</html>

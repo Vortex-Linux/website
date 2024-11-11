@@ -15,4 +15,7 @@ export default defineConfig({
     }),
     sitemap(),
   ],
+  vite: {
+    envPrefix: 'GITHUB_',
+  },
 });

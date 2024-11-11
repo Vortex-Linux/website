@@ -16,3 +16,76 @@ import "../styles/Hero.css";
     </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 2rem;
+    padding-top: calc(2rem + 70px); /* Add extra padding for navbar */
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  .hero-image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 1rem;
+      min-height: 80vh;
+    }
+
+    .hero-content {
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-image {
+      opacity: 0.3;
+      max-width: 80%;
+      right: 50%;
+      transform: translate(50%, -50%);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+    }
+  }
+</style>

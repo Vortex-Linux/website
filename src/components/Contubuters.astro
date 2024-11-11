@@ -1,0 +1,399 @@
+---
+import { Icon } from "astro-icon/components";
+import "../styles/Contributors.css";
+
+const GITHUB_TOKEN = import.meta.env.PUBLIC_GITHUB_TOKEN;
+if (!GITHUB_TOKEN) {
+    console.error("Missing PUBLIC_GITHUB_TOKEN environment variable");
+}
+
+// Simplified GraphQL query to reduce nested properties
+const query = `
+query {
+  organization(login: "Vortex-Linux") {
+    repositories(first: 100, privacy: PUBLIC) {
+      nodes {
+        name
+        defaultBranchRef {
+          target {
+            ... on Commit {
+              history(first: 100) {
+                nodes {
+                  author {
+                    user {
+                      login
+                      url
+                      avatarUrl
+                      name
+                    }
+                    date
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+const getContributorsData = async () => {
+    try {
+        if (!GITHUB_TOKEN) {
+            throw new Error(
+                "GitHub token is not configured. Please add PUBLIC_GITHUB_TOKEN to your .env file",
+            );
+        }
+
+        const response = await fetch("https://api.github.com/graphql", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`GitHub API responded with ${response.status}`);
+        }
+
+        const { data, errors } = await response.json();
+
+        if (errors) {
+            throw new Error(errors[0].message);
+        }
+
+        if (!data?.organization?.repositories?.nodes) {
+            throw new Error("No repository data received");
+        }
+
+        const repositories = data.organization.repositories.nodes;
+        const contributorsMap = new Map();
+
+        repositories.forEach((repo) => {
+            if (!repo?.defaultBranchRef?.target?.history?.nodes) return;
+
+            const commits = repo.defaultBranchRef.target.history.nodes;
+            commits.forEach((commit) => {
+                if (!commit?.author?.user) return;
+
+                const user = commit.author.user;
+                const date = new Date(commit.author.date);
+
+                if (!contributorsMap.has(user.login)) {
+                    contributorsMap.set(user.login, {
+                        login: user.login,
+                        url: user.url,
+                        avatarUrl: user.avatarUrl,
+                        contributions: 1, // Count commits instead of using contributionsCollection
+                        lastContribution: date,
+                        firstContribution: date,
+                        repositories: new Set([repo.name]),
+                    });
+                } else {
+                    const contributor = contributorsMap.get(user.login);
+                    contributor.contributions++;
+                    contributor.repositories.add(repo.name);
+                    contributor.lastContribution =
+                        date > contributor.lastContribution
+                            ? date
+                            : contributor.lastContribution;
+                    contributor.firstContribution =
+                        date < contributor.firstContribution
+                            ? date
+                            : contributor.firstContribution;
+                }
+            });
+        });
+
+        // Convert contributors map to array and format data
+        const contributors = Array.from(contributorsMap.values()).map((c) => ({
+            ...c,
+            repositories: Array.from(c.repositories),
+        }));
+
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+        return {
+            activeContributors: contributors
+                .filter((c) => c.lastContribution >= oneMonthAgo)
+                .sort((a, b) => b.contributions - a.contributions),
+            inactiveContributors: contributors
+                .filter((c) => c.lastContribution < oneMonthAgo)
+                .sort((a, b) => b.contributions - a.contributions),
+        };
+    } catch (error) {
+        console.error("Failed to fetch contributors:", error);
+        return { activeContributors: [], inactiveContributors: [] };
+    }
+};
+
+const { activeContributors, inactiveContributors } =
+    await getContributorsData();
+---
+
+<section class="contributors-section" id="contributors">
+    <h2 class="section-title">Active Contributors</h2>
+    <div class="contributors-grid" id="active-contributors">
+        {
+            activeContributors.length ? (
+                activeContributors.map((contributor, index) => (
+                    <div class="contributor">
+                        <div class="contributor-inner">
+                            <div class="contributor-photo-wrapper">
+                                <img
+                                    src={contributor.avatarUrl}
+                                    alt={`${contributor.login}'s Profile Picture`}
+                                    class="contributor-photo"
+                                    loading="lazy"
+                                />
+                                <div class="contributor-rank">{index + 1}</div>
+                            </div>
+                            <div class="contributor-info">
+                                <h3>{contributor.login}</h3>
+                                <p class="stats">
+                                    {contributor.contributions} contributions
+                                    <br />
+                                    <span class="last-contribution">
+                                        Last active:
+                                        {new Date(
+                                            contributor.lastContribution,
+                                        ).toLocaleDateString()}
+                                    </span>
+                                </p>
+                            </div>
+                            <a
+                                href={contributor.url}
+                                class="profile-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`View ${contributor.login}'s profile`}
+                            >
+                                <Icon name="mdi:arrow-top-right" />
+                            </a>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <div class="contributors-loading">
+                    {Array(3)
+                        .fill(0)
+                        .map(() => (
+                            <div class="contributor-skeleton">
+                                <div class="photo-skeleton" />
+                                <div class="info-skeleton">
+                                    <div class="name-skeleton" />
+                                    <div class="stats-skeleton" />
+                                </div>
+                            </div>
+                        ))}
+                </div>
+            )
+        }
+    </div>
+
+    <h2>Past Contributors</h2>
+    <div class="contributors-grid inactive" id="inactive-contributors">
+        {
+            inactiveContributors.length ? (
+                inactiveContributors.map((contributor, index) => (
+                    <div class="contributor">
+                        <div class="contributor-inner">
+                            <div class="contributor-photo-wrapper">
+                                <img
+                                    src={contributor.avatarUrl}
+                                    alt={`${contributor.login}'s Profile Picture`}
+                                    class="contributor-photo"
+                                    loading="lazy"
+                                />
+                                <div class="contributor-rank">{index + 1}</div>
+                            </div>
+                            <div class="contributor-info">
+                                <h3>{contributor.login}</h3>
+                                <p class="stats">
+                                    {contributor.contributions} contributions
+                                    <br />
+                                    <span class="last-contribution">
+                                        Last active:
+                                        {new Date(
+                                            contributor.lastContribution,
+                                        ).toLocaleDateString()}
+                                    </span>
+                                </p>
+                            </div>
+                            <a
+                                href={contributor.url}
+                                class="profile-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`View ${contributor.login}'s profile`}
+                            >
+                                <Icon name="mdi:arrow-top-right" />
+                            </a>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <div class="loading-skeleton">
+                    <div class="contributor-skeleton" />
+                </div>
+            )
+        }
+    </div>
+</section>
+
+<script>
+    const GITHUB_TOKEN = import.meta.env.PUBLIC_GITHUB_TOKEN;
+
+    // Function to create contributor HTML
+    function createContributorElement(contributor, index) {
+        return `
+            <div class="contributor">
+                <div class="contributor-inner">
+                    <div class="contributor-photo-wrapper">
+                        <img
+                            src="${contributor.avatarUrl}"
+                            alt="${contributor.login}'s Profile Picture"
+                            class="contributor-photo"
+                            loading="lazy"
+                        />
+                        <div class="contributor-rank">${index + 1}</div>
+                    </div>
+                    <div class="contributor-info">
+                        <h3>${contributor.login}</h3>
+                        <p class="stats">
+                            ${contributor.contributions} contributions
+                            <br/>
+                            <span class="last-contribution">
+                                Last active: ${new Date(contributor.lastContribution).toLocaleDateString()}
+                            </span>
+                        </p>
+                    </div>
+                    <a
+                        href="${contributor.url}"
+                        class="profile-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View ${contributor.login}'s profile"
+                    >
+                        <svg class="icon"><use href="#arrow-top-right"/></svg>
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+
+    // Function to update the DOM
+    async function updateContributors() {
+        try {
+            if (!GITHUB_TOKEN) {
+                throw new Error("GitHub token is not configured");
+            }
+
+            // Use the same query as server-side
+            const response = await fetch("https://api.github.com/graphql", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${GITHUB_TOKEN}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query: `${query}` }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`GitHub API responded with ${response.status}`);
+            }
+
+            const { data } = await response.json();
+            const repositories = data.organization.repositories.nodes;
+
+            // Process contributors across all repos
+            const contributorsMap = new Map();
+
+            repositories.forEach((repo) => {
+                if (!repo?.defaultBranchRef?.target?.history?.nodes) return;
+
+                const commits = repo.defaultBranchRef.target.history.nodes;
+                commits.forEach((commit) => {
+                    if (!commit?.author?.user) return;
+
+                    const user = commit.author.user;
+                    const date = new Date(commit.author.date);
+
+                    if (!contributorsMap.has(user.login)) {
+                        contributorsMap.set(user.login, {
+                            login: user.login,
+                            url: user.url,
+                            avatarUrl: user.avatarUrl,
+                            contributions: 1, // Count commits instead of using contributionsCollection
+                            lastContribution: date,
+                            firstContribution: date,
+                            repositories: new Set([repo.name]),
+                        });
+                    } else {
+                        const contributor = contributorsMap.get(user.login);
+                        contributor.contributions++;
+                        contributor.repositories.add(repo.name);
+                        contributor.lastContribution =
+                            date > contributor.lastContribution
+                                ? date
+                                : contributor.lastContribution;
+                        contributor.firstContribution =
+                            date < contributor.firstContribution
+                                ? date
+                                : contributor.firstContribution;
+                    }
+                });
+            });
+
+            // Convert contributors map to array and format data
+            const contributors = Array.from(contributorsMap.values()).map(
+                (c) => ({
+                    ...c,
+                    repositories: Array.from(c.repositories),
+                }),
+            );
+
+            const oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+            const activeContributors = contributors.filter(
+                (c) => c.lastContribution >= oneMonthAgo,
+            );
+            const inactiveContributors = contributors.filter(
+                (c) => c.lastContribution < oneMonthAgo,
+            );
+
+            const activeContainer = document.getElementById(
+                "active-contributors",
+            );
+            const inactiveContainer = document.getElementById(
+                "inactive-contributors",
+            );
+
+            if (activeContributors.length) {
+                activeContainer.innerHTML = activeContributors
+                    .map((contributor, index) =>
+                        createContributorElement(contributor, index),
+                    )
+                    .join("");
+            }
+
+            if (inactiveContributors.length) {
+                inactiveContainer.innerHTML = inactiveContributors
+                    .map((contributor, index) =>
+                        createContributorElement(contributor, index),
+                    )
+                    .join("");
+            }
+        } catch (error) {
+            console.error("Error updating contributors:", error);
+        }
+    }
+
+    // Update as soon as possible
+    updateContributors();
+</script>

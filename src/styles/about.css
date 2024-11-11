@@ -3,10 +3,12 @@
   margin: 0 auto;
   padding: 2rem 1rem;
   color: var(--text-primary);
+  padding-top: 90px;
 }
 
 .about-section {
   margin-bottom: 4rem;
+
 }
 
 h1,
