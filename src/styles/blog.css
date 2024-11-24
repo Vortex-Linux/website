@@ -3,6 +3,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: 90px;
 }
 
 .sidebar {
@@ -50,6 +51,7 @@
 
 .blog-posts {
   flex: 1;
+
 }
 
 .post-item {
@@ -78,6 +80,7 @@
 .post-title {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
+
 }
 
 .post-author {

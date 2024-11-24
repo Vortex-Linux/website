@@ -1,17 +1,20 @@
 .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 2rem;
+  padding-top: calc(2rem + 70px);
   background-image: url("/banner.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: calc(70vh - 60px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--text-primary);
   text-align: center;
-  padding: 0 20px;
   opacity: 0.9;
-  position: relative;
 }
 
 .hero::before {
@@ -26,9 +29,34 @@
 }
 
 .hero-content {
-  max-width: 800px;
   position: relative;
   z-index: 2;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.hero-image {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 50%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
 }
 
 h1 {
@@ -111,6 +139,23 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 1rem;
+    min-height: 80vh;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .hero-image {
+    opacity: 0.3;
+    max-width: 80%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+
   .social-links-container {
     flex-direction: column;
   }
@@ -121,10 +166,21 @@ h1 {
   }
 }
 
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+}
+
 @media (max-width: 375px) {
   h1 {
     font-size: 2rem;
   }
+
   .subtitle {
     font-size: 1rem;
   }
@@ -137,17 +193,22 @@ h1 {
 }
 
 .hero .subtitle {
-  font-size: 1.2rem; /* Increase font size */
-  color: #ffffff; /* White text for better contrast */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+  font-size: 1.2rem;
+  /* Increase font size */
+  color: #ffffff;
+  /* White text for better contrast */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  /* Add subtle shadow */
 }
 
 .download-btn {
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  transition: background-color 0.3s ease;
+  /* Smooth transition for hover effect */
 }
 
 .download-btn:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9;
+  /* Darker blue on hover */
 }
 
 .social-links {

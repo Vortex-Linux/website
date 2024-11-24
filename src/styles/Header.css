@@ -1,12 +1,13 @@
-header {
-  position: sticky;
+.header {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: var(--background-secondary);
-  box-shadow: 0 2px 4px var(--shadow-color);
-  transition: background-color 0.3s ease;
+  background: rgba(var(--background-color-rgb), 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-content {
@@ -48,7 +49,7 @@ header {
   gap: 1.5rem;
 }
 
-.nav-item > a {
+.nav-item>a {
   color: var(--text-primary);
   text-decoration: none;
   font-size: 1rem;
@@ -218,7 +219,7 @@ header .nav-actions .download-button:hover {
     width: 100%;
   }
 
-  .nav-item > a {
+  .nav-item>a {
     padding: 0.5rem 0;
     width: 100%;
     justify-content: space-between;
@@ -236,7 +237,7 @@ header .nav-actions .download-button:hover {
     transition: max-height 0.3s ease-out;
   }
 
-  .nav-item.dropdown-open > .dropdown {
+  .nav-item.dropdown-open>.dropdown {
     display: block;
     max-height: 500px;
     transition: max-height 0.5s ease-in;

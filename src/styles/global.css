@@ -53,6 +53,7 @@ html.dark {
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins-Regular.woff") format("woff");
@@ -60,6 +61,7 @@ html.dark {
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins-Italic.woff") format("woff");
@@ -67,6 +69,7 @@ html.dark {
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins-Bold.woff") format("woff");
@@ -74,6 +77,7 @@ html.dark {
   font-style: bold;
   font-display: swap;
 }
+
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -87,14 +91,21 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
 main {
   width: 100%;
   max-width: 100%;
   margin: auto;
-  padding: 0 1rem;
+  padding: 90px 1rem 1rem;
   flex: 1 0 auto;
   box-sizing: border-box;
 }
+
+/* Remove top padding only for pages with hero sections */
+.hero-page main {
+  padding-top: 0;
+}
+
 h1,
 h2,
 h3,
@@ -105,80 +116,101 @@ h6 {
   color: var(--text-primary);
   line-height: 1.2;
 }
+
 h1 {
   font-size: 3.052em;
 }
+
 h2 {
   font-size: 2.441em;
 }
+
 h3 {
   font-size: 1.953em;
 }
+
 h4 {
   font-size: 1.563em;
 }
+
 h5 {
   font-size: 1.25em;
 }
+
 strong,
 b {
   font-weight: 700;
 }
+
 a {
   color: var(--accent-primary);
   text-decoration: none;
 }
+
 a:hover {
   color: var(--accent-secondary);
   text-decoration: underline;
 }
+
 p {
   margin-bottom: 1em;
 }
+
 .prose p {
   margin-bottom: 2em;
 }
+
 textarea {
   width: 100%;
   font-size: 16px;
 }
+
 input {
   font-size: 16px;
 }
+
 table {
   width: 100%;
 }
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
+
 code {
   padding: 2px 5px;
   background-color: rgb(var(--secondary-white));
   border-radius: 2px;
 }
+
 pre {
   padding: 1.5em;
   border-radius: 8px;
 }
-pre > code {
+
+pre>code {
   all: unset;
 }
+
 blockquote {
   border-left: 4px solid var(--primary-light);
   padding: 0 0 0 20px;
   margin: 0px;
   font-size: 1.333em;
 }
+
 hr {
   border: none;
   border-top: 1px solid rgb(var(--secondary-white));
 }
+
 @media (max-width: 720px) {
   body {
     font-size: 18px;
   }
+
   main {
     padding: 1em;
   }
