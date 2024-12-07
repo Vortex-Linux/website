@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,11 +16,11 @@ jobs:
     environment:
       name: github-pages
     env:
-      PUBLIC_GITHUB_TOKEN: ${{ secrets.CONTRIBUTOR_SECRET }}
+      PUBLIC_GITHUB_TOKEN: ${{ secrets.PUBLIC_GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Install, build, and upload
         uses: withastro/action@v1
         with:
@@ -28,7 +28,7 @@ jobs:
           node-version: 18
           package-manager: npm
         env:
-          PUBLIC_GITHUB_TOKEN: ${{ secrets.CONTRIBUTOR_SECRET }}
+          PUBLIC_GITHUB_TOKEN: ${{ secrets.PUBLIC_GITHUB_TOKEN }}
 
   deploy:
     needs: build
